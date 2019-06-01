@@ -54,13 +54,15 @@ class CombinedControls extends JFrame implements ActionListener {
 	private static final int window_height = 700;
 	private static final int editor_width = 900;
 	private static final int editor_height = 700;
+	private static final boolean debug = true;
 
 
 
 	// CodeRail Module Objects
 	private AddMenuBar menu;		// Menu Bar Module
-	private editor obj;				// Editor Module
+	private Editor obj;				// Editor Module
 	private UndoManager manager; 	// Undo Manager
+	private FileManager FileObj;	// FileManager Module Object
 
 	// constructor
 	CombinedControls(){
@@ -76,7 +78,7 @@ class CombinedControls extends JFrame implements ActionListener {
 		
 
 		// Create TextArea Object [CodeRail.editor]
-		obj = new editor(editor_width, editor_height);
+		obj = new Editor(editor_width, editor_height);
 
 		// Undo manager to track change and undo changes
 		manager = new UndoManager();
@@ -89,6 +91,8 @@ class CombinedControls extends JFrame implements ActionListener {
 		//setting backgound color of menu bar
 		menu.setBackground(Color.blue);
 
+		// File Manager Module Object
+		FileObj = new FileManager(obj);
 
 		// Add Object
 		add(menu);
@@ -149,7 +153,6 @@ class CombinedControls extends JFrame implements ActionListener {
 		menu.menu_font_wordwrap.addActionListener(this);
 		menu.menu_font_font.addActionListener(this);
 		menu.menu_font_font_size_large.addActionListener(this);
-		menu.menu_font_font_size_medium.addActionListener(this);
 		menu.menu_font_font_size_small.addActionListener(this);
 
 		// menu help
@@ -158,11 +161,26 @@ class CombinedControls extends JFrame implements ActionListener {
 		
 	}
 
-	public void exit(){
+	private void exit(){
 		System.exit(0);
 	}
 
 	public void actionPerformed(ActionEvent e){
+		if (debug) {
+			System.out.println(e.getSource());
+							
+		}
+		try{
+			CustomActionPerformed(e);
+
+		}catch (Exception error){
+			System.out.println("[-] Error Catch During CustomActionPerformed Function Call");
+			error.printStackTrace();
+			System.out.println(error);
+		}
+	}
+
+	private void CustomActionPerformed(ActionEvent e) throws Exception{
 		/*
 		This method catch events.
 
@@ -186,87 +204,212 @@ class CombinedControls extends JFrame implements ActionListener {
 
 		// menu file items
 		if (e.getSource()==menu.menu_file_new){
-			System.out.println(e.getSource());
+			if (debug) {
+				System.out.println("[-] new file");
+
+			}
+			FileObj.SaveFile();
 		}
 		
-		else if (e.getSource()==menu.menu_file_open){}
+		else if (e.getSource()==menu.menu_file_open){
+			if (debug) {
+				System.out.println("[-] open file");
+
+			}
+			FileObj.OpenFileChooser();
+		}
 		
-		else if (e.getSource()==menu.menu_file_save){}
+		else if (e.getSource()==menu.menu_file_save){
+			if (debug) {
+				System.out.println("[-] save file");
+
+			}
+			FileObj.SaveFile();
+
+		}
 		
-		else if (e.getSource()==menu.menu_file_saveas){}
+		else if (e.getSource()==menu.menu_file_saveas){
+			if (debug) {
+				System.out.println("[-] save as file");
+
+			}
+			FileObj.SaveAsFile();
+		}
 		
-		else if (e.getSource()==menu.menu_file_print){}
+		else if (e.getSource()==menu.menu_file_print){
+			if (debug) {
+				System.out.println("[-] print file");
+
+			}
+		}
 		
 		else if (e.getSource()==menu.menu_file_exit){
+			if (debug) {
+				System.out.println("[-] exit");
+
+			}
 			exit();
 		}
 
 
+
 		// menu edit
 		else if (e.getSource()==menu.menu_edit_undo){
+			if (debug) {
+				System.out.println("[-] undo");
+
+			}
 			manager.undo();
 		}
 		
 		else if (e.getSource()==menu.menu_edit_redo){
+			if (debug) {
+				System.out.println("[-] redo");
+
+			}
 			manager.redo();
 		}
 		
 		else if (e.getSource()==menu.menu_edit_cut){
+			if (debug) {
+				System.out.println("[-] cut");
+
+			}
 			obj.cut();
 		}
 		
 		else if (e.getSource()==menu.menu_edit_copy){
+			if (debug) {
+				System.out.println("[-] copy");
+
+			}
 			obj.copy();
 		}
 		
 		else if (e.getSource()==menu.menu_edit_paste){
+			if (debug) {
+				System.out.println("[-] paste");
+
+			}
 			obj.paste();
 		}
 		
 		else if (e.getSource()==menu.menu_edit_delete){
+			if (debug) {
+				System.out.println("[-] delete");
+
+			}
 			obj.setText("");
 
 		}
 
 		else if (e.getSource()==menu.menu_edit_selectall){
+			if (debug) {
+				System.out.println("[-] selectall");
+
+			}
 			obj.selectAll();
 		}
 		
-		else if (e.getSource()==menu.menu_edit_find){}
+		else if (e.getSource()==menu.menu_edit_find){
+			if (debug) {
+				System.out.println("[-] find");
+
+			}
+		}
 		
-		else if (e.getSource()==menu.menu_edit_findnext){}
+		else if (e.getSource()==menu.menu_edit_findnext){
+			if (debug) {
+				System.out.println("[-] findnext");
+
+			}
+		}
 		
-		else if (e.getSource()==menu.menu_edit_replace){}
+		else if (e.getSource()==menu.menu_edit_replace){
+			if (debug) {
+				System.out.println("[-] replace");
+
+			}
+		}
 		
-		else if (e.getSource()==menu.menu_edit_replaceall){}
+		else if (e.getSource()==menu.menu_edit_replaceall){
+			if (debug) {
+				System.out.println("[-] replaceall");
+
+			}
+		}
 		
-		else if (e.getSource()==menu.menu_edit_goto){}
+		else if (e.getSource()==menu.menu_edit_goto){
+			if (debug) {
+				System.out.println("[-] goto");
+
+			}
+		}
 
 		// menu view		
-		else if (e.getSource()==menu.menu_view_foreground){}
+		else if (e.getSource()==menu.menu_view_foreground){
+			if (debug) {
+				System.out.println("[-] view foreground");
+
+			}
+		}
 		
-		else if (e.getSource()==menu.menu_view_background){}
+		else if (e.getSource()==menu.menu_view_background){
+			if (debug) {
+				System.out.println("[-] view background");
+
+			}
+		}
 		
-		else if (e.getSource()==menu.menu_view_statusbar){}
+		else if (e.getSource()==menu.menu_view_statusbar){
+			if (debug) {
+				System.out.println("[-] view statusbar");
+
+			}
+		}
 
 
 		// menu font
-		else if (e.getSource()==menu.menu_font_wordwrap){}
-		else if (e.getSource()==menu.menu_font_font){}
+		else if (e.getSource()==menu.menu_font_wordwrap){
+			if (debug) {
+				System.out.println("[-] view wordwrap");
+
+			}
+		}
+		else if (e.getSource()==menu.menu_font_font){
+			if (debug) {
+				System.out.println("[-] font");
+
+			}
+		}
 		else if (e.getSource()==menu.menu_font_font_size_large){
-			
+			if (debug) {
+				System.out.println("[-] font size large");
+
+			}
 			obj.setFont(new Font("",Font.BOLD,30));   
 		}
-		else if (e.getSource()==menu.menu_font_font_size_medium){
-			obj.setFont(new Font("",Font.BOLD,20));
-		}
 		else if (e.getSource()==menu.menu_font_font_size_small){
+			if (debug) {
+				System.out.println("[-] font size small");
+
+			}
 			obj.setFont(new Font("",Font.BOLD,13));
 		}
 
 		// menu help
-		else if (e.getSource()==menu.menu_help_topic){}
-		else if (e.getSource()==menu.menu_help_about){}
+		else if (e.getSource()==menu.menu_help_topic){
+			if (debug) {
+				System.out.println("[-] help topic");
+
+			}
+		}
+		else if (e.getSource()==menu.menu_help_about){
+			if (debug) {
+				System.out.println("[-] about");
+
+			}
+		}
 	
 
 	}

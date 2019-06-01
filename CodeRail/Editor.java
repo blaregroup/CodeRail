@@ -20,13 +20,16 @@ import javax.swing.event.*;
 import java.awt.event.*;
 import java.awt.*;
 
+// https://docs.oracle.com/javase/7/docs/api/javax/swing/JTextArea.html
 
 // editor class name
-public class editor extends JTextArea implements DocumentListener {
+public class Editor extends JTextArea implements DocumentListener {
 
 	// Constructor
-	public editor(int w, int h){
+	public Editor(int w, int h){
+
 		super(w, h);
+		
 		// Configurations
 		setVisible(true);
 		setFocusable(true);
@@ -34,6 +37,7 @@ public class editor extends JTextArea implements DocumentListener {
 		//setBackground(Color.blue);
 		//setForeground(Color.white);
 		//setFont(new Font("",Font.BOLD,25));
+		
 		getDocument().addDocumentListener(this);
 	}
 
@@ -83,11 +87,11 @@ public class editor extends JTextArea implements DocumentListener {
 		//obj1.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		obj1.setSize(300, 400);
 		obj1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		obj1.setVisible(true);
-		obj1.setFocusable(true);
+		//obj1.setVisible(true);
+		//obj1.setFocusable(true);
 		
 		// Create Text Area Object
-		editor obj = new editor(200, 300);
+		Editor obj = new Editor(200, 300);
 		obj1.add(obj);
 		
 	}

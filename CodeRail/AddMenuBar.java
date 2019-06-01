@@ -19,6 +19,18 @@ import javax.swing.*;
 import java.awt.event.*;
 import java .awt.*;
 
+/*
+Related Doc Urls:
+
+	https://docs.oracle.com/javase/7/docs/api/javax/swing/text/JTextComponent.html
+	https://docs.oracle.com/javase/7/docs/api/javax/swing/JMenu.html
+	https://docs.oracle.com/javase/7/docs/api/javax/swing/KeyStroke.html
+	https://docs.oracle.com/javase/7/docs/api/javax/swing/JMenuItem.html
+	https://docs.oracle.com/javase/7/docs/api/javax/swing/AbstractButton.html#setMnemonic(char)
+
+
+*/
+
 
 // AddMenuBar Class
 public class AddMenuBar extends JMenuBar {
@@ -117,14 +129,13 @@ public class AddMenuBar extends JMenuBar {
 		// menu view
 	 	menu_view_foreground = new JMenuItem("Foreground");
 	 	menu_view_background = new JMenuItem("Background");
-	 	menu_view_statusbar  = new JMenuItem("StatusBar");
+	 	menu_view_statusbar  = new JCheckBoxMenuItem("StatusBar", true);
 
 		// menu font
 		menu_font_wordwrap  = new JMenuItem("Word wrap");
 		menu_font_font 		= new JMenu("Font");
 		//sub menus of font_font menu
 		menu_font_font_size_large =new JMenuItem("Large");
-		menu_font_font_size_medium =new JMenuItem("Medium");
 		menu_font_font_size_small =new JMenuItem("Small");
 
 		// menu help
@@ -138,27 +149,32 @@ public class AddMenuBar extends JMenuBar {
 		menu_file_open.setAccelerator(KeyStroke.getKeyStroke('O',ActionEvent.CTRL_MASK));
 		menu_file_new.setAccelerator(KeyStroke.getKeyStroke('N',ActionEvent.CTRL_MASK));
 		menu_file_save.setAccelerator(KeyStroke.getKeyStroke('S',ActionEvent.CTRL_MASK));
-		menu_file_saveas.setAccelerator(KeyStroke.getKeyStroke('N',ActionEvent.CTRL_MASK));
-		menu_file_print.setAccelerator(KeyStroke.getKeyStroke('P',ActionEvent.CTRL_MASK));
-		menu_file_exit.setAccelerator(KeyStroke.getKeyStroke('E',ActionEvent.CTRL_MASK));
+		menu_file_saveas.setAccelerator(KeyStroke.getKeyStroke('S',ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
+		menu_file_print.setAccelerator(KeyStroke.getKeyStroke('P',ActionEvent.CTRL_MASK+ActionEvent.ALT_MASK));
+		menu_file_exit.setAccelerator(KeyStroke.getKeyStroke('Q',ActionEvent.CTRL_MASK));
 		
 		
 		// menu edit shortcut keys
 		menu_edit_undo.setAccelerator(KeyStroke.getKeyStroke('Z',ActionEvent.CTRL_MASK));
-		menu_edit_redo.setAccelerator(KeyStroke.getKeyStroke('Y',ActionEvent.CTRL_MASK));
+		menu_edit_redo.setAccelerator(KeyStroke.getKeyStroke('Z',ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
 		menu_edit_cut.setAccelerator(KeyStroke.getKeyStroke('X',ActionEvent.CTRL_MASK));
+		menu_edit_delete.setAccelerator(KeyStroke.getKeyStroke('X', ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
 		menu_edit_copy.setAccelerator(KeyStroke.getKeyStroke('C',ActionEvent.CTRL_MASK));
 	 	menu_edit_paste.setAccelerator(KeyStroke.getKeyStroke('V',ActionEvent.CTRL_MASK));
 		menu_edit_selectall.setAccelerator(KeyStroke.getKeyStroke('A',ActionEvent.CTRL_MASK));
 		menu_edit_find.setAccelerator(KeyStroke.getKeyStroke('F',ActionEvent.CTRL_MASK));
+		menu_edit_findnext.setAccelerator(KeyStroke.getKeyStroke('F', ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
 		menu_edit_replace.setAccelerator(KeyStroke.getKeyStroke('H',ActionEvent.CTRL_MASK));
+		menu_edit_replaceall.setAccelerator(KeyStroke.getKeyStroke('H', ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
 		menu_edit_goto.setAccelerator(KeyStroke.getKeyStroke('G',ActionEvent.CTRL_MASK));
 
 		//menuitem font shortcut keys
-		menu_font_font_size_large.setAccelerator(KeyStroke.getKeyStroke('L',ActionEvent.CTRL_MASK));
-		menu_font_font_size_medium.setAccelerator(KeyStroke.getKeyStroke('M',ActionEvent.CTRL_MASK));
-		menu_font_font_size_small.setAccelerator(KeyStroke.getKeyStroke('S',ActionEvent.CTRL_MASK));
+		menu_font_font_size_large.setAccelerator(KeyStroke.getKeyStroke(107,ActionEvent.CTRL_MASK));
+		menu_font_font_size_small.setAccelerator(KeyStroke.getKeyStroke(109,ActionEvent.CTRL_MASK));
 
+		// Help Menu
+		menu_help_topic.setAccelerator(KeyStroke.getKeyStroke(121, 0));
+		menu_help_about.setAccelerator(KeyStroke.getKeyStroke(123, 0));
 
 		//menu file
 		menu_file.add(menu_file_open );
@@ -194,7 +210,6 @@ public class AddMenuBar extends JMenuBar {
 		// menu font
 		menu_font.add(menu_font_wordwrap);
 		menu_font_font.add(menu_font_font_size_large);
-		menu_font_font.add(menu_font_font_size_medium);
 		menu_font_font.add(menu_font_font_size_small);
 		menu_font.add(menu_font_font);
 
