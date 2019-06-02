@@ -21,10 +21,26 @@ import java.awt.event.*;
 import java.awt.*;
 
 // https://docs.oracle.com/javase/7/docs/api/javax/swing/JTextArea.html
-
+// https://docs.oracle.com/javase/7/docs/api/java/awt/Font.html
 // editor class name
 public class Editor extends JTextArea implements DocumentListener {
+	
+	private float fontsize = 12.0f;
 
+	public void increasefont(){
+		fontsize += 4.0f ;
+		applychanges();
+	}
+	public void decreasefont(){
+		fontsize -= 4.0f;
+		applychanges();
+	}
+
+
+	private void applychanges(){
+		setFont(getFont().deriveFont(fontsize));
+
+	}
 	// Constructor
 	public Editor(int w, int h){
 

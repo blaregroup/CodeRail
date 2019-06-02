@@ -36,6 +36,13 @@ This Combined Controls class play the role of connector or main control. basical
 this create object of all CodeRail Subdirectory class and then, connect them.
 
 */
+
+/*
+	USEFUL Documentation:
+		https://docs.oracle.com/javase/7/docs/api/javax/swing/JScrollPane.html
+
+
+*/
 class CombinedControls extends JFrame implements ActionListener {
 	/*
 
@@ -63,6 +70,8 @@ class CombinedControls extends JFrame implements ActionListener {
 	private Editor obj;				// Editor Module
 	private UndoManager manager; 	// Undo Manager
 	private FileManager FileObj;	// FileManager Module Object
+	private JScrollPane scrolltext;
+	private SmallDialogBoxes PopUpDialog;
 
 	// constructor
 	CombinedControls(){
@@ -75,10 +84,12 @@ class CombinedControls extends JFrame implements ActionListener {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setVisible(true);
 		setFocusable(true);
+
 		
 
 		// Create TextArea Object [CodeRail.editor]
 		obj = new Editor(editor_width, editor_height);
+		JScrollPane scrolltext = new JScrollPane(obj); 
 
 		// Undo manager to track change and undo changes
 		manager = new UndoManager();
@@ -94,11 +105,13 @@ class CombinedControls extends JFrame implements ActionListener {
 		// File Manager Module Object
 		FileObj = new FileManager(obj);
 
+
 		// Add Object
 		add(menu);
-		add(obj);
+		add(scrolltext);
 		setJMenuBar(menu);  
 		setVisible(true);
+		PopUpDialog =  new SmallDialogBoxes(this);
 
 		/*
 		Here, First we implemented ActionListener into self class.
@@ -314,8 +327,9 @@ class CombinedControls extends JFrame implements ActionListener {
 		else if (e.getSource()==menu.menu_edit_find){
 			if (debug) {
 				System.out.println("[-] find");
-
+				
 			}
+			PopUpDialog.askfind();
 		}
 		
 		else if (e.getSource()==menu.menu_edit_findnext){
@@ -323,6 +337,7 @@ class CombinedControls extends JFrame implements ActionListener {
 				System.out.println("[-] findnext");
 
 			}
+			PopUpDialog.askfindall();
 		}
 		
 		else if (e.getSource()==menu.menu_edit_replace){
@@ -330,6 +345,7 @@ class CombinedControls extends JFrame implements ActionListener {
 				System.out.println("[-] replace");
 
 			}
+			PopUpDialog.askreplace();
 		}
 		
 		else if (e.getSource()==menu.menu_edit_replaceall){
@@ -337,6 +353,7 @@ class CombinedControls extends JFrame implements ActionListener {
 				System.out.println("[-] replaceall");
 
 			}
+			PopUpDialog.askreplaceall();
 		}
 		
 		else if (e.getSource()==menu.menu_edit_goto){
@@ -385,16 +402,18 @@ class CombinedControls extends JFrame implements ActionListener {
 		else if (e.getSource()==menu.menu_font_font_size_large){
 			if (debug) {
 				System.out.println("[-] font size large");
+				obj.increasefont();
 
 			}
-			obj.setFont(new Font("",Font.BOLD,30));   
+			//obj.setFont(new Font("",Font.BOLD,30));   
 		}
 		else if (e.getSource()==menu.menu_font_font_size_small){
 			if (debug) {
 				System.out.println("[-] font size small");
 
 			}
-			obj.setFont(new Font("",Font.BOLD,13));
+			obj.decreasefont();
+			//obj.setFont(new Font("",Font.BOLD,13));
 		}
 
 		// menu help

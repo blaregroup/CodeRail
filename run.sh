@@ -22,8 +22,16 @@
 #
 #
 # compile every time
+echo "[-] Re-Compiling Source Code"
 javac ./CodeRail/*.java
+
+
+
 # compile this oue also
+echo "[-] Re-Compiling execute file"
 javac execute.java
+
+
 # execute
+echo "[-] Executing .."
 java execute

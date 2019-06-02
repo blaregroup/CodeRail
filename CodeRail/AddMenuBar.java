@@ -190,20 +190,25 @@ public class AddMenuBar extends JMenuBar {
 		// menu edit
 		menu_edit.add(menu_edit_undo);
 		menu_edit.add(menu_edit_redo);
+		menu_edit.addSeparator();
 		menu_edit.add(menu_edit_cut);
 		menu_edit.add(menu_edit_copy);
 	 	menu_edit.add(menu_edit_paste);
+	 	menu_edit.addSeparator();
 		menu_edit.add(menu_edit_delete);
+		menu_edit.add(menu_edit_goto);
 		menu_edit.add(menu_edit_selectall);
+		menu_edit.addSeparator();
 		menu_edit.add(menu_edit_find);
 		menu_edit.add(menu_edit_findnext);
+		menu_edit.addSeparator();
 		menu_edit.add(menu_edit_replace);
 		menu_edit.add(menu_edit_replaceall);
-		menu_edit.add(menu_edit_goto);
 
 		// menu view
 	 	menu_view.add(menu_view_foreground);
 	 	menu_view.add(menu_view_background);
+	 	menu_view.addSeparator();
 	 	menu_view.add(menu_view_statusbar);
 
 
