@@ -71,7 +71,7 @@ class CombinedControls extends JFrame implements ActionListener {
 	private UndoManager manager; 	// Undo Manager
 	private FileManager FileObj;	// FileManager Module Object
 	private JScrollPane scrolltext;
-	private SmallDialogBoxes PopUpDialog;
+	private SmallPopWindows PopUpDialog;
 
 	// constructor
 	CombinedControls(){
@@ -111,7 +111,7 @@ class CombinedControls extends JFrame implements ActionListener {
 		add(scrolltext);
 		setJMenuBar(menu);  
 		setVisible(true);
-		PopUpDialog =  new SmallDialogBoxes(this);
+		//PopUpDialog =  new SmallDialogBoxes(this);
 
 		/*
 		Here, First we implemented ActionListener into self class.
@@ -329,7 +329,7 @@ class CombinedControls extends JFrame implements ActionListener {
 				System.out.println("[-] find");
 				
 			}
-			PopUpDialog.askfind();
+			PopUpDialog = new SmallPopWindows(this, 0);
 		}
 		
 		else if (e.getSource()==menu.menu_edit_findnext){
@@ -337,7 +337,7 @@ class CombinedControls extends JFrame implements ActionListener {
 				System.out.println("[-] findnext");
 
 			}
-			PopUpDialog.askfindall();
+			PopUpDialog = new SmallPopWindows(this, 0);
 		}
 		
 		else if (e.getSource()==menu.menu_edit_replace){
@@ -345,7 +345,7 @@ class CombinedControls extends JFrame implements ActionListener {
 				System.out.println("[-] replace");
 
 			}
-			PopUpDialog.askreplace();
+			PopUpDialog = new SmallPopWindows(this, 1);
 		}
 		
 		else if (e.getSource()==menu.menu_edit_replaceall){
@@ -353,7 +353,7 @@ class CombinedControls extends JFrame implements ActionListener {
 				System.out.println("[-] replaceall");
 
 			}
-			PopUpDialog.askreplaceall();
+			PopUpDialog = new SmallPopWindows(this, 1);
 		}
 		
 		else if (e.getSource()==menu.menu_edit_goto){
