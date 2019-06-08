@@ -55,19 +55,23 @@ public class FileManager{
 		// lines of files
 		String lines;
 
-		// File Reader is Ready to ready
-		FileReader file_reader = new FileReader(infile);
+		// File Reader is Ready to read
+		FileReader file_reader = new FileReader(Path);
 
 		// Reader Buffer is Ready to Read
 		BufferedReader input_pipe = new BufferedReader(file_reader);
 
-		while( (lines=input_pipe.readLine())!=null){
+		/*
+			while( (lines=input_pipe.readLine())!=null){
 			System.out.println("[+] Opening File");
 			//System.out.print("Start-");
 			//System.out.print(lines);
 			//System.out.print("-End");
 			editor.append(lines);
-		}
+		}*/
+		/* https://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html   */
+		editor.read(input_pipe,null);   //for reading file
+		editor.requestFocus();   		//for getting focus on textarea
 		input_pipe.close();
 		return true;
 	}
