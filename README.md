@@ -3,11 +3,11 @@ This is A Simple Baby Project Started Few Weeks ago. we created this repo just f
 
 Here, we just trying to implement a simple text editor app to practise our skill.
 
-This Project is Transferred To BlareGroup Official Github Account.
+This Project is Transferred From `github.com/surajsinghbisht054` Github Account.
 
 
 ### Author
-- Suraj Singh Bisht
+- Suraj Singh Bisht 
 - Himanshu
 
 
