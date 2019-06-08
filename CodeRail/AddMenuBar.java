@@ -69,6 +69,16 @@ public class AddMenuBar extends JMenuBar {
 	public JMenuItem menu_view_foreground;
 	public JMenuItem menu_view_background;
 	public JMenuItem menu_view_statusbar;
+	public JMenu menu_view_language;
+	public JMenuItem language_html;
+	public JMenuItem language_css;
+	public JMenuItem language_javascript;
+	public JMenuItem language_java;
+	public JMenuItem language_python;
+	public JMenuItem language_c;
+	public JMenuItem language_cplus;
+	public JMenuItem language_csharp;
+	public JMenuItem language_php;
 
 	// menu font
 	public JMenuItem menu_font_wordwrap;
@@ -130,6 +140,16 @@ public class AddMenuBar extends JMenuBar {
 	 	menu_view_foreground = new JMenuItem("Foreground");
 	 	menu_view_background = new JMenuItem("Background");
 	 	menu_view_statusbar  = new JCheckBoxMenuItem("StatusBar", true);
+	 	menu_view_language 	 = new JMenu("Language");
+	 	language_c = new JMenuItem("C");
+	 	language_cplus =new JMenuItem("C++");
+	 	language_csharp = new JMenuItem("CSharp");
+	 	language_css =new JMenuItem("CSS");
+	 	language_html =new JMenuItem("HTML");
+	 	language_java =new JMenuItem("JAVA");
+	 	language_javascript =new JMenuItem("JAVASCRIPT");
+	 	language_php =new JMenuItem("PHP");
+	 	language_python =new JMenuItem("PYTHON");
 
 		// menu font
 		menu_font_wordwrap  = new JMenuItem("Word wrap");
@@ -208,6 +228,17 @@ public class AddMenuBar extends JMenuBar {
 		// menu view
 	 	menu_view.add(menu_view_foreground);
 	 	menu_view.add(menu_view_background);
+	 	menu_view.addSeparator();
+	 	menu_view_language.add(language_c);
+	 	menu_view_language.add(language_cplus);
+	 	menu_view_language.add(language_csharp);
+	 	menu_view_language.add(language_css);
+	 	menu_view_language.add(language_html);
+	 	menu_view_language.add(language_java);
+	 	menu_view_language.add(language_javascript);
+	 	menu_view_language.add(language_php);
+	 	menu_view_language.add(language_python);
+	 	menu_view.add(menu_view_language);
 	 	menu_view.addSeparator();
 	 	menu_view.add(menu_view_statusbar);
 
