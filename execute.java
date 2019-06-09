@@ -369,6 +369,16 @@ class CombinedControls extends JFrame implements ActionListener {
 				System.out.println("[-] view foreground");
 
 			}
+
+			/* adding color chooser window for foreground */
+			Color initialForeground = obj.getForeground();
+			Color foreground = JColorChooser.showDialog(this, "Choose Foreground", initialForeground);
+			if (foreground != null) 
+			{
+			obj.setForeground(foreground);	 //changing text color
+			obj.setCaretColor(foreground);   //changing cursor color
+
+			}
 		}
 		
 		else if (e.getSource()==menu.menu_view_background){
@@ -376,6 +386,15 @@ class CombinedControls extends JFrame implements ActionListener {
 				System.out.println("[-] view background");
 
 			}
+
+			/* adding color chooser window for background */
+			Color initialBackground = obj.getBackground();
+			Color background = JColorChooser.showDialog(this, "Choose Background", initialBackground);
+			if (background != null) 
+			{
+			obj.setBackground(background); 	//changing background color
+			}
+
 		}
 		
 		else if (e.getSource()==menu.menu_view_statusbar){
