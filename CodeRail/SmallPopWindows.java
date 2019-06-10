@@ -33,7 +33,7 @@ import java.awt.event.*;
 
 
 
-
+/*
 
 // Main Class To Handle All Small Dialog Box Related Operations
 class SmallDialogBoxes{
@@ -143,7 +143,7 @@ class SmallDialogBoxes{
 	}
 }
 
-
+*/
 
 public class SmallPopWindows extends JDialog implements ActionListener{
 

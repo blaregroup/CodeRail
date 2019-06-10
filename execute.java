@@ -91,6 +91,11 @@ class CombinedControls extends JFrame implements ActionListener {
 		// Create TextArea Object [CodeRail.editor]
 		obj = new Editor(editor_width, editor_height);
 		JScrollPane scrolltext = new JScrollPane(obj); 
+
+		Font font_family = new Font("Courier", Font.BOLD,16);
+		
+		//set font for JLabel
+		obj.setFont(font_family);
 		
 
 		// Undo manager to track change and undo changes
@@ -102,7 +107,7 @@ class CombinedControls extends JFrame implements ActionListener {
 		menu = new AddMenuBar();
 		
 		//setting backgound color of menu bar
-		menu.setBackground(Color.blue);
+		menu.setBackground(new Color(142, 68, 173));
 
 		// File Manager Module Object
 		FileObj = new FileManager(obj);
@@ -400,77 +405,87 @@ class CombinedControls extends JFrame implements ActionListener {
 
 		}
 		
+		// Dark
 		else if (e.getSource()==menu.theme_a){
 			if (debug) {
 				System.out.println("[-] theme selected");
 
 			}
-			obj.setBackground(new Color(22,44,66));
-			obj.setForeground(new Color(255,255,255));
-		}
 
+			obj.setBackground(new Color(61, 61, 61));
+			obj.setForeground(new Color(236, 240, 241));
+			menu.setBackground(new Color(142, 68, 173));
+		}
+		// Light
 		else if (e.getSource()==menu.theme_b){
 			if (debug) {
 				System.out.println("[-] theme selected");
 
 			}
-			obj.setBackground(new Color(22,44,66));
-			obj.setForeground(new Color(255,255,255));
+			obj.setBackground(new Color(236, 240, 241));
+			obj.setForeground(new Color(34, 47, 62));
+			menu.setBackground(new Color(211, 84, 0));
 		}
-
+		// Cool
 		else if (e.getSource()==menu.theme_c){
 			if (debug) {
 				System.out.println("[-] theme selected");
 
 			}
-			obj.setBackground(new Color(22,44,66));
-			obj.setForeground(new Color(255,255,255));
+			obj.setBackground(new Color(9, 132, 227));
+			obj.setForeground(new Color(236, 240, 241));
+			menu.setBackground(new Color(44, 62, 80));
 		}
-
+		// Vim
 		else if (e.getSource()==menu.theme_d){
 			if (debug) {
 				System.out.println("[-] theme selected");
 
 			}
-			obj.setBackground(new Color(22,44,66));
-			obj.setForeground(new Color(255,255,255));
+			obj.setBackground(new Color(111, 30, 81));
+			obj.setForeground(new Color(247, 241, 227));
+			menu.setBackground(new Color(179, 55, 113));
 		}
-
+		// Ocean
 		else if (e.getSource()==menu.theme_e){
 			if (debug) {
 				System.out.println("[-] theme selected");
 
 			}
-			obj.setBackground(new Color(22,44,66));
-			obj.setForeground(new Color(255,255,255));
+			obj.setBackground(new Color(154, 236, 219));
+			obj.setForeground(new Color(44, 58, 71));
+			menu.setBackground(new Color(130, 88, 159));
 		}
-
+		// Arc
 		else if (e.getSource()==menu.theme_f){
 			if (debug) {
 				System.out.println("[-] theme selected");
 
 			}
-			obj.setBackground(new Color(22,44,66));
-			obj.setForeground(new Color(255,255,255));
+			obj.setBackground(new Color(72, 84, 96));
+			obj.setForeground(new Color(248, 239, 186));
+			menu.setBackground(new Color(44, 58, 71));
 
 		}
-
+		// Pro
 		else if (e.getSource()==menu.theme_g){
 			if (debug) {
 				System.out.println("[-] theme selected");
 
 			}
-			obj.setBackground(new Color(22,44,66));
-			obj.setForeground(new Color(255,255,255));
+			obj.setBackground(new Color(44, 58, 71));
+			obj.setForeground(new Color(130, 88, 159));
+			menu.setBackground(new Color(24, 44, 97));
 		}
-
+		// MAC
 		else if (e.getSource()==menu.theme_h){
 			if (debug) {
 				System.out.println("[-] theme selected");
 
 			}
-			obj.setBackground(new Color(22,44,66));
-			obj.setForeground(new Color(255,255,255));
+			obj.setBackground(new Color(236, 240, 241));
+			obj.setForeground(new Color(44, 62, 80));
+			menu.setBackground(new Color(44, 58, 71));
 		}
 
 		else if (e.getSource()==menu.language_plain){

@@ -89,6 +89,7 @@ public class AddMenuBar extends JMenuBar {
 	public JMenuItem language_csharp;
 	public JMenuItem language_php;
 	public JMenuItem menu_view_statusbar;
+	public JMenuItem menu_view_linenumber;
 
 	// menu font
 	public JMenuItem menu_font_wordwrap;
@@ -150,17 +151,17 @@ public class AddMenuBar extends JMenuBar {
 	 	menu_view_foreground = new JMenuItem("Foreground");
 	 	menu_view_background = new JMenuItem("Background");
 	 	menu_view_theme = new JMenu("Theme");
-	 	theme_a = new JMenuItem("suraj");
-	 	theme_b = new JMenuItem("him");
-	 	theme_c = new JMenuItem("arvind");
-	 	theme_d = new JMenuItem("abc");
-	 	theme_e = new JMenuItem("hhll");
-	 	theme_f = new JMenuItem("xyz");
-	 	theme_g = new JMenuItem("bisht");
-	 	theme_h = new JMenuItem("kumar");
+	 	theme_a = new JMenuItem("Dark");
+	 	theme_b = new JMenuItem("Light");
+	 	theme_c = new JMenuItem("Cool");
+	 	theme_d = new JMenuItem("Vim");
+	 	theme_e = new JMenuItem("Ocean");
+	 	theme_f = new JMenuItem("Arc");
+	 	theme_g = new JMenuItem("Pro");
+	 	theme_h = new JMenuItem("Mac");
 
 	 	menu_view_language 	 = new JMenu("Language");
-	 	language_plain =new JMenuItem("PLAIN");
+	 	language_plain =new JMenuItem("Plain");
 	 	language_c = new JMenuItem("C");
 	 	language_cplus =new JMenuItem("C++");
 	 	language_csharp = new JMenuItem("CSharp");
@@ -171,10 +172,12 @@ public class AddMenuBar extends JMenuBar {
 	 	language_php =new JMenuItem("PHP");
 	 	language_python =new JMenuItem("PYTHON");
 		menu_view_statusbar  = new JCheckBoxMenuItem("StatusBar", true);
+		menu_view_linenumber = new JCheckBoxMenuItem("Line Number", true);
 
 		// menu font
 		menu_font_wordwrap  = new JMenuItem("Word wrap");
 		menu_font_font 		= new JMenu("Font");
+
 		//sub menus of font_font menu
 		menu_font_font_size_large =new JMenuItem("Large");
 		menu_font_font_size_small =new JMenuItem("Small");
@@ -257,6 +260,7 @@ public class AddMenuBar extends JMenuBar {
 	 	menu_view_theme.add(theme_f);
 	 	menu_view_theme.add(theme_g);
 	 	menu_view_theme.add(theme_h);
+	 	menu_view.addSeparator();
 	 	menu_view.add(menu_view_theme);
 	 	menu_view.addSeparator();
 	 	menu_view_language.add(language_plain);
@@ -272,7 +276,7 @@ public class AddMenuBar extends JMenuBar {
 	 	menu_view.add(menu_view_language);
 	 	menu_view.addSeparator();
 	 	menu_view.add(menu_view_statusbar);
-
+	 	menu_view.add(menu_view_linenumber);
 
 		// menu font
 		menu_font.add(menu_font_wordwrap);
