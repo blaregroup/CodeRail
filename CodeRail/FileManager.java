@@ -43,6 +43,7 @@ public class FileManager{
 	public int FILE_PATH_AVAILABLE; 	// File Selected Or Not
 	public int NEEDTOSAVE;				// Changes in Document
 	private Editor editor;				// To Handle JTextArea Object
+	 	
 
 	// Constructor
 	public FileManager(Editor e){
@@ -73,6 +74,8 @@ public class FileManager{
 		editor.read(input_pipe,null);   //for reading file
 		editor.requestFocus();   		//for getting focus on textarea
 		input_pipe.close();
+		
+
 		return true;
 	}
 	// if its old one then

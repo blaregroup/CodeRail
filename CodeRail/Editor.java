@@ -27,6 +27,7 @@ public class Editor extends JTextArea implements DocumentListener {
 	
 	private float fontsize = 12.0f;
 
+
 	public void increasefont(){
 		fontsize += 4.0f ;
 		applychanges();
@@ -39,7 +40,7 @@ public class Editor extends JTextArea implements DocumentListener {
 
 	private void applychanges(){
 		setFont(getFont().deriveFont(fontsize));
-
+		
 	}
 	// Constructor
 	public Editor(int w, int h){
@@ -70,6 +71,7 @@ public class Editor extends JTextArea implements DocumentListener {
 	
 	//
 	public void insertUpdate(DocumentEvent doc){
+
 	}
 
 	/*

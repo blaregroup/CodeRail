@@ -8,6 +8,7 @@ import javax.swing.UIManager;
 import CodeRail.*;
 
 
+
 /*
 ================================================================================
 						Project CodeRail
@@ -90,6 +91,7 @@ class CombinedControls extends JFrame implements ActionListener {
 		// Create TextArea Object [CodeRail.editor]
 		obj = new Editor(editor_width, editor_height);
 		JScrollPane scrolltext = new JScrollPane(obj); 
+		
 
 		// Undo manager to track change and undo changes
 		manager = new UndoManager();
@@ -160,6 +162,24 @@ class CombinedControls extends JFrame implements ActionListener {
 		// menu view
 		menu.menu_view_foreground.addActionListener(this);
 		menu.menu_view_background.addActionListener(this);
+		menu.theme_a.addActionListener(this);
+		menu.theme_b.addActionListener(this);
+		menu.theme_c.addActionListener(this);
+		menu.theme_d.addActionListener(this);
+		menu.theme_e.addActionListener(this);
+		menu.theme_f.addActionListener(this);
+		menu.theme_g.addActionListener(this);
+		menu.theme_h.addActionListener(this);
+		menu.language_c.addActionListener(this);
+		menu.language_cplus.addActionListener(this);
+		menu.language_csharp.addActionListener(this);
+		menu.language_css.addActionListener(this);
+		menu.language_html.addActionListener(this);
+		menu.language_java.addActionListener(this);
+		menu.language_javascript.addActionListener(this);
+		menu.language_plain.addActionListener(this);
+		menu.language_php.addActionListener(this);
+		menu.language_python.addActionListener(this);
 		menu.menu_view_statusbar.addActionListener(this);
 
 		// menu font
@@ -370,15 +390,6 @@ class CombinedControls extends JFrame implements ActionListener {
 
 			}
 
-			/* adding color chooser window for foreground */
-			Color initialForeground = obj.getForeground();
-			Color foreground = JColorChooser.showDialog(this, "Choose Foreground", initialForeground);
-			if (foreground != null) 
-			{
-			obj.setForeground(foreground);	 //changing text color
-			obj.setCaretColor(foreground);   //changing cursor color
-
-			}
 		}
 		
 		else if (e.getSource()==menu.menu_view_background){
@@ -387,16 +398,161 @@ class CombinedControls extends JFrame implements ActionListener {
 
 			}
 
-			/* adding color chooser window for background */
-			Color initialBackground = obj.getBackground();
-			Color background = JColorChooser.showDialog(this, "Choose Background", initialBackground);
-			if (background != null) 
-			{
-			obj.setBackground(background); 	//changing background color
+		}
+		
+		else if (e.getSource()==menu.theme_a){
+			if (debug) {
+				System.out.println("[-] theme selected");
+
+			}
+			obj.setBackground(new Color(22,44,66));
+			obj.setForeground(new Color(255,255,255));
+		}
+
+		else if (e.getSource()==menu.theme_b){
+			if (debug) {
+				System.out.println("[-] theme selected");
+
+			}
+			obj.setBackground(new Color(22,44,66));
+			obj.setForeground(new Color(255,255,255));
+		}
+
+		else if (e.getSource()==menu.theme_c){
+			if (debug) {
+				System.out.println("[-] theme selected");
+
+			}
+			obj.setBackground(new Color(22,44,66));
+			obj.setForeground(new Color(255,255,255));
+		}
+
+		else if (e.getSource()==menu.theme_d){
+			if (debug) {
+				System.out.println("[-] theme selected");
+
+			}
+			obj.setBackground(new Color(22,44,66));
+			obj.setForeground(new Color(255,255,255));
+		}
+
+		else if (e.getSource()==menu.theme_e){
+			if (debug) {
+				System.out.println("[-] theme selected");
+
+			}
+			obj.setBackground(new Color(22,44,66));
+			obj.setForeground(new Color(255,255,255));
+		}
+
+		else if (e.getSource()==menu.theme_f){
+			if (debug) {
+				System.out.println("[-] theme selected");
+
+			}
+			obj.setBackground(new Color(22,44,66));
+			obj.setForeground(new Color(255,255,255));
+
+		}
+
+		else if (e.getSource()==menu.theme_g){
+			if (debug) {
+				System.out.println("[-] theme selected");
+
+			}
+			obj.setBackground(new Color(22,44,66));
+			obj.setForeground(new Color(255,255,255));
+		}
+
+		else if (e.getSource()==menu.theme_h){
+			if (debug) {
+				System.out.println("[-] theme selected");
+
+			}
+			obj.setBackground(new Color(22,44,66));
+			obj.setForeground(new Color(255,255,255));
+		}
+
+		else if (e.getSource()==menu.language_plain){
+			if (debug) {
+				System.out.println("[-] plain language selected");
+
 			}
 
 		}
-		
+
+		else if (e.getSource()==menu.language_c){
+			if (debug) {
+				System.out.println("[-] c language selected");
+
+			}
+
+		}
+
+		else if (e.getSource()==menu.language_cplus){
+			if (debug) {
+				System.out.println("[-]  c++ language selected");
+
+			}
+
+		}
+
+		else if (e.getSource()==menu.language_csharp){
+			if (debug) {
+				System.out.println("[-] csharp language selected");
+
+			}
+
+		}
+
+		else if (e.getSource()==menu.language_css){
+			if (debug) {
+				System.out.println("[-] css language selected");
+
+			}
+
+		}
+
+		else if (e.getSource()==menu.language_html){
+			if (debug) {
+				System.out.println("[-] html language selected");
+
+			}
+
+		}
+
+		else if (e.getSource()==menu.language_java){
+			if (debug) {
+				System.out.println("[-] java language selected");
+
+			}
+
+		}
+
+		else if (e.getSource()==menu.language_javascript){
+			if (debug) {
+				System.out.println("[-] javascript language selected");
+
+			}
+
+		}
+
+		else if (e.getSource()==menu.language_php){
+			if (debug) {
+				System.out.println("[-] php language selected");
+
+			}
+
+		}
+
+		else if (e.getSource()==menu.language_python){
+			if (debug) {
+				System.out.println("[-] python language selected");
+
+			}
+
+		}
+
 		else if (e.getSource()==menu.menu_view_statusbar){
 			if (debug) {
 				System.out.println("[-] view statusbar");

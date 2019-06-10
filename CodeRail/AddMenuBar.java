@@ -68,8 +68,17 @@ public class AddMenuBar extends JMenuBar {
 	// menu view
 	public JMenuItem menu_view_foreground;
 	public JMenuItem menu_view_background;
-	public JMenuItem menu_view_statusbar;
+	public JMenu menu_view_theme;
+	public JMenuItem theme_a;
+	public JMenuItem theme_b;
+	public JMenuItem theme_c;
+	public JMenuItem theme_d;
+	public JMenuItem theme_e;
+	public JMenuItem theme_f;
+	public JMenuItem theme_g;
+	public JMenuItem theme_h;
 	public JMenu menu_view_language;
+	public JMenuItem language_plain;
 	public JMenuItem language_html;
 	public JMenuItem language_css;
 	public JMenuItem language_javascript;
@@ -79,6 +88,7 @@ public class AddMenuBar extends JMenuBar {
 	public JMenuItem language_cplus;
 	public JMenuItem language_csharp;
 	public JMenuItem language_php;
+	public JMenuItem menu_view_statusbar;
 
 	// menu font
 	public JMenuItem menu_font_wordwrap;
@@ -139,8 +149,18 @@ public class AddMenuBar extends JMenuBar {
 		// menu view
 	 	menu_view_foreground = new JMenuItem("Foreground");
 	 	menu_view_background = new JMenuItem("Background");
-	 	menu_view_statusbar  = new JCheckBoxMenuItem("StatusBar", true);
+	 	menu_view_theme = new JMenu("Theme");
+	 	theme_a = new JMenuItem("suraj");
+	 	theme_b = new JMenuItem("him");
+	 	theme_c = new JMenuItem("arvind");
+	 	theme_d = new JMenuItem("abc");
+	 	theme_e = new JMenuItem("hhll");
+	 	theme_f = new JMenuItem("xyz");
+	 	theme_g = new JMenuItem("bisht");
+	 	theme_h = new JMenuItem("kumar");
+
 	 	menu_view_language 	 = new JMenu("Language");
+	 	language_plain =new JMenuItem("PLAIN");
 	 	language_c = new JMenuItem("C");
 	 	language_cplus =new JMenuItem("C++");
 	 	language_csharp = new JMenuItem("CSharp");
@@ -150,6 +170,7 @@ public class AddMenuBar extends JMenuBar {
 	 	language_javascript =new JMenuItem("JAVASCRIPT");
 	 	language_php =new JMenuItem("PHP");
 	 	language_python =new JMenuItem("PYTHON");
+		menu_view_statusbar  = new JCheckBoxMenuItem("StatusBar", true);
 
 		// menu font
 		menu_font_wordwrap  = new JMenuItem("Word wrap");
@@ -228,7 +249,17 @@ public class AddMenuBar extends JMenuBar {
 		// menu view
 	 	menu_view.add(menu_view_foreground);
 	 	menu_view.add(menu_view_background);
+	 	menu_view_theme.add(theme_a);
+	 	menu_view_theme.add(theme_b);
+	 	menu_view_theme.add(theme_c);
+	 	menu_view_theme.add(theme_d);
+	 	menu_view_theme.add(theme_e);
+	 	menu_view_theme.add(theme_f);
+	 	menu_view_theme.add(theme_g);
+	 	menu_view_theme.add(theme_h);
+	 	menu_view.add(menu_view_theme);
 	 	menu_view.addSeparator();
+	 	menu_view_language.add(language_plain);
 	 	menu_view_language.add(language_c);
 	 	menu_view_language.add(language_cplus);
 	 	menu_view_language.add(language_csharp);
