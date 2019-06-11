@@ -204,7 +204,7 @@ public class AddMenuBar extends JMenuBar {
 	 	menu_edit_paste.setAccelerator(KeyStroke.getKeyStroke('V',ActionEvent.CTRL_MASK));
 		menu_edit_selectall.setAccelerator(KeyStroke.getKeyStroke('A',ActionEvent.CTRL_MASK));
 		menu_edit_find.setAccelerator(KeyStroke.getKeyStroke('F',ActionEvent.CTRL_MASK));
-		menu_edit_replace.setAccelerator(KeyStroke.getKeyStroke('H',ActionEvent.CTRL_MASK));
+		menu_edit_replace.setAccelerator(KeyStroke.getKeyStroke('R',ActionEvent.CTRL_MASK));
 		menu_edit_goto.setAccelerator(KeyStroke.getKeyStroke('G',ActionEvent.CTRL_MASK));
 
 		//menuitem font shortcut keys

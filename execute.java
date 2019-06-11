@@ -352,7 +352,8 @@ class CombinedControls extends JFrame implements ActionListener {
 				System.out.println("[-] find");
 				
 			}
-			PopUpDialog = new SmallPopWindows(this, 0);
+			PopUpDialog = new SmallPopWindows(this, obj, 0);
+			
 		}
 		
 		else if (e.getSource()==menu.menu_edit_replace){
@@ -360,7 +361,7 @@ class CombinedControls extends JFrame implements ActionListener {
 				System.out.println("[-] replace");
 
 			}
-			PopUpDialog = new SmallPopWindows(this, 1);
+			PopUpDialog = new SmallPopWindows(this, obj, 1);
 		}
 		
 		
