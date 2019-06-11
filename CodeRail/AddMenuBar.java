@@ -60,14 +60,10 @@ public class AddMenuBar extends JMenuBar {
 	public JMenuItem menu_edit_delete;
 	public JMenuItem menu_edit_selectall;
 	public JMenuItem menu_edit_find;
-	public JMenuItem menu_edit_findnext;
 	public JMenuItem menu_edit_replace;
-	public JMenuItem menu_edit_replaceall;
 	public JMenuItem menu_edit_goto;
 
 	// menu view
-	public JMenuItem menu_view_foreground;
-	public JMenuItem menu_view_background;
 	public JMenu menu_view_theme;
 	public JMenuItem theme_a;
 	public JMenuItem theme_b;
@@ -77,6 +73,7 @@ public class AddMenuBar extends JMenuBar {
 	public JMenuItem theme_f;
 	public JMenuItem theme_g;
 	public JMenuItem theme_h;
+	public JMenuItem theme_0;
 	public JMenu menu_view_language;
 	public JMenuItem language_plain;
 	public JMenuItem language_html;
@@ -90,6 +87,7 @@ public class AddMenuBar extends JMenuBar {
 	public JMenuItem language_php;
 	public JMenuItem menu_view_statusbar;
 	public JMenuItem menu_view_linenumber;
+	public JMenuItem menu_view_cursorline;
 
 	// menu font
 	public JMenuItem menu_font_wordwrap;
@@ -142,15 +140,12 @@ public class AddMenuBar extends JMenuBar {
 		menu_edit_delete 	= new JMenuItem("Delete");
 		menu_edit_selectall = new JMenuItem("Select All");
 		menu_edit_find 		= new JMenuItem("Find");
-		menu_edit_findnext 	= new JMenuItem("Find Next");
 		menu_edit_replace 	= new JMenuItem("Replace");
-		menu_edit_replaceall= new JMenuItem("Replace All");
 		menu_edit_goto 		= new JMenuItem("Goto");
 
 		// menu view
-	 	menu_view_foreground = new JMenuItem("Foreground");
-	 	menu_view_background = new JMenuItem("Background");
 	 	menu_view_theme = new JMenu("Theme");
+	 	theme_0 = new JMenuItem("Default");
 	 	theme_a = new JMenuItem("Dark");
 	 	theme_b = new JMenuItem("Light");
 	 	theme_c = new JMenuItem("Cool");
@@ -160,19 +155,21 @@ public class AddMenuBar extends JMenuBar {
 	 	theme_g = new JMenuItem("Pro");
 	 	theme_h = new JMenuItem("Mac");
 
-	 	menu_view_language 	 = new JMenu("Language");
-	 	language_plain =new JMenuItem("Plain");
-	 	language_c = new JMenuItem("C");
-	 	language_cplus =new JMenuItem("C++");
-	 	language_csharp = new JMenuItem("CSharp");
-	 	language_css =new JMenuItem("CSS");
-	 	language_html =new JMenuItem("HTML");
-	 	language_java =new JMenuItem("JAVA");
-	 	language_javascript =new JMenuItem("JAVASCRIPT");
-	 	language_php =new JMenuItem("PHP");
-	 	language_python =new JMenuItem("PYTHON");
-		menu_view_statusbar  = new JCheckBoxMenuItem("StatusBar", true);
-		menu_view_linenumber = new JCheckBoxMenuItem("Line Number", true);
+	 	// Sub menu option
+	 	menu_view_language  = new JMenu("Language");
+	 	language_plain 		= new JMenuItem("Plain");
+	 	language_c          = new JMenuItem("C");
+	 	language_cplus      = new JMenuItem("C++");
+	 	language_csharp     = new JMenuItem("CSharp");
+	 	language_css        = new JMenuItem("CSS");
+	 	language_html       = new JMenuItem("HTML");
+	 	language_java       = new JMenuItem("JAVA");
+	 	language_javascript = new JMenuItem("JAVASCRIPT");
+	 	language_php        = new JMenuItem("PHP");
+	 	language_python     = new JMenuItem("PYTHON");
+		menu_view_statusbar = new JCheckBoxMenuItem("Status Bar", true);
+		menu_view_linenumber= new JCheckBoxMenuItem("Line Number", true);
+		menu_view_cursorline= new JCheckBoxMenuItem("Cursor Line", true);
 
 		// menu font
 		menu_font_wordwrap  = new JMenuItem("Word wrap");
@@ -207,9 +204,7 @@ public class AddMenuBar extends JMenuBar {
 	 	menu_edit_paste.setAccelerator(KeyStroke.getKeyStroke('V',ActionEvent.CTRL_MASK));
 		menu_edit_selectall.setAccelerator(KeyStroke.getKeyStroke('A',ActionEvent.CTRL_MASK));
 		menu_edit_find.setAccelerator(KeyStroke.getKeyStroke('F',ActionEvent.CTRL_MASK));
-		menu_edit_findnext.setAccelerator(KeyStroke.getKeyStroke('F', ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
 		menu_edit_replace.setAccelerator(KeyStroke.getKeyStroke('H',ActionEvent.CTRL_MASK));
-		menu_edit_replaceall.setAccelerator(KeyStroke.getKeyStroke('H', ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
 		menu_edit_goto.setAccelerator(KeyStroke.getKeyStroke('G',ActionEvent.CTRL_MASK));
 
 		//menuitem font shortcut keys
@@ -244,14 +239,11 @@ public class AddMenuBar extends JMenuBar {
 		menu_edit.add(menu_edit_selectall);
 		menu_edit.addSeparator();
 		menu_edit.add(menu_edit_find);
-		menu_edit.add(menu_edit_findnext);
 		menu_edit.addSeparator();
 		menu_edit.add(menu_edit_replace);
-		menu_edit.add(menu_edit_replaceall);
-
+		
 		// menu view
-	 	menu_view.add(menu_view_foreground);
-	 	menu_view.add(menu_view_background);
+	 	menu_view_theme.add(theme_0);
 	 	menu_view_theme.add(theme_a);
 	 	menu_view_theme.add(theme_b);
 	 	menu_view_theme.add(theme_c);
@@ -260,7 +252,6 @@ public class AddMenuBar extends JMenuBar {
 	 	menu_view_theme.add(theme_f);
 	 	menu_view_theme.add(theme_g);
 	 	menu_view_theme.add(theme_h);
-	 	menu_view.addSeparator();
 	 	menu_view.add(menu_view_theme);
 	 	menu_view.addSeparator();
 	 	menu_view_language.add(language_plain);
@@ -277,6 +268,7 @@ public class AddMenuBar extends JMenuBar {
 	 	menu_view.addSeparator();
 	 	menu_view.add(menu_view_statusbar);
 	 	menu_view.add(menu_view_linenumber);
+	 	menu_view.add(menu_view_cursorline);
 
 		// menu font
 		menu_font.add(menu_font_wordwrap);
@@ -307,6 +299,8 @@ public class AddMenuBar extends JMenuBar {
 		menu_help.setForeground(Color.white);
 
 		//adding color to theme
+		theme_0.setBackground(Color.WHITE);
+		theme_0.setForeground(Color.BLACK);
 		theme_a.setBackground(new Color(61, 61, 61));
 		theme_a.setForeground(new Color(236, 240, 241));
 		theme_b.setBackground(new Color(236, 240, 241));

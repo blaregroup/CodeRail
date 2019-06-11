@@ -27,6 +27,8 @@ import java.awt.event.*;
 		 	https://docs.oracle.com/javase/7/docs/api/javax/swing/JOptionPane.html
 			https://stackoverflow.com/questions/6555040/multiple-input-in-joptionpane-showinputdialog/6555051
 			https://docs.oracle.com/javase/7/docs/api/javax/swing/JDialog.html
+			https://tips4java.wordpress.com/2008/10/29/line-painter/
+			https://www.daniweb.com/programming/software-development/threads/417646/find-a-word-in-jtextarea-and-higlight-it
 
 */
 
@@ -35,26 +37,34 @@ import java.awt.event.*;
 public class SmallPopWindows extends JDialog implements ActionListener{
 
 	// Get in in reverse
-	public String getinput_one;
-	public String getinput_second;
+	public int dialogtype; 
+
 
 	// Input Field
 	private JTextField input1 = new JTextField();
 	private JTextField input2 = new JTextField();
+
 	private JButton button1;
 	private JButton button2;
+	private JTextArea textobj;
 
-	public SmallPopWindows(JFrame parent, int dialog_type_code){
+
+	public SmallPopWindows(JFrame parent, JTextArea texto, int dialog_type_code){
 		super(parent);
-		GenerateDialog(dialog_type_code);
+		textobj = texto; // JTextArea object
+		dialogtype = dialog_type_code;
+
+		GenerateDialog();
 	}
 
 	// Constructor
-	public SmallPopWindows(int dialog_type_code){
-		GenerateDialog(dialog_type_code);
+	public SmallPopWindows(JTextArea texto, int dialog_type_code){
+		textobj = texto; // JTextArea object
+		dialogtype = dialog_type_code;
+		GenerateDialog();
 	}
 
-	private void GenerateDialog(int dialog_type_code){
+	private void GenerateDialog(){
 		/*
 			Use dialog_type_code:
 				0 = Find Dialog [Default]
@@ -62,7 +72,7 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		*/
 
 		// Replace Dialog Code
-		if (dialog_type_code==1) {
+		if (dialogtype==1) {
 			
 			InitGUIReplace();
 
@@ -74,18 +84,52 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		InitGUI();
 	}
 
+	private void perform_find_routine(){
+		String allinput = textobj.getText();
+		String input = input1.getText();
+		System.out.println("request to perform find routine "+input);
+
+	}
+	private void perform_findall_routine(){
+		String allinput = textobj.getText();
+		String input = input2.getText();
+		System.out.println("request to perform findall routine "+input);
+	}
+	private void perform_replace_routine(){
+		String allinput = textobj.getText();
+		String inp_1 = input1.getText();
+		String inp_2 = input2.getText();
+		System.out.println("request to perform replace "+inp_1+ " with " + inp_2);
+	}
+	private void perform_replaceall_routine(){
+		String allinput = textobj.getText();
+		String inp_1 = input1.getText();
+		String inp_2 = input2.getText();
+		System.out.println("request to perform replace all "+inp_1+ " with " + inp_2);
+	}
+
 	public void actionPerformed(ActionEvent e){
+
 		if (e.getSource()==button1) {
-			getinput_one = input1.getText();
-			getinput_second = "";
+			// Find Window Find button clicked
+			if(dialogtype==0){
+				perform_find_routine();
+			// Replace Window Replace Button Clicked
+			}else{
+				perform_replace_routine();
+			}
 		}
 		else{
-			getinput_one = "";
-			getinput_second = input2.getText();
+			// Find Window Findall Button Clicked
+			if(dialogtype==0){
+				perform_findall_routine();
+			}
+			// Replace Window ReplaceAll Button Clicked
+			else{
+				perform_replaceall_routine();
+			}
 		}
 
-		System.out.println(getinput_one);
-		System.out.println(getinput_second);
 	}
 
 	// Initialise GUI
@@ -176,41 +220,28 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 
 		public static void main(String args[]){
 		JFrame root = new JFrame("YUP");
+		JTextArea textarea = new JTextArea("Yup! Working A B A B Abc");
 		
 		JButton button1 = new JButton("Replace");
-		JButton button2 = new JButton("Replace All");
 		JButton button3 = new JButton("Find..");
-		JButton button4 = new JButton("Find All");
 
 
 		button1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-			SmallPopWindows d = new SmallPopWindows(root, 1);
-			}
-		});
-		button2.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-			SmallPopWindows d = new SmallPopWindows(root, 1);
+			SmallPopWindows d = new SmallPopWindows(root,textarea, 1);
 			}
 		});
 		button3.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-			SmallPopWindows d = new SmallPopWindows(root, 0);
+			SmallPopWindows d = new SmallPopWindows(root,textarea, 0);
 			}
 		});
-		button4.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				// Find all Trigger
-				SmallPopWindows d = new SmallPopWindows(root, 0);
-			}
-		});
-		root.add(button1, BorderLayout.NORTH);
-		root.add(button2, BorderLayout.SOUTH);
-		root.add(button3, BorderLayout.EAST);
-		root.add(button4, BorderLayout.WEST);
+		root.add(button1, BorderLayout.EAST);
+		root.add(button3, BorderLayout.WEST);
+		root.add(textarea,BorderLayout.CENTER);
 		root.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		root.setFocusable(true);
-		root.pack();
+		root.setSize(400, 400);
 		root.setVisible(true);
 	}
 }

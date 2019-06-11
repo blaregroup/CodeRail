@@ -94,7 +94,7 @@ class CombinedControls extends JFrame implements ActionListener {
 
 		Font font_family = new Font("Courier", Font.BOLD,16);
 		
-		//set font for JLabel
+		//set font for JTextArea Object
 		obj.setFont(font_family);
 		
 
@@ -118,7 +118,6 @@ class CombinedControls extends JFrame implements ActionListener {
 		add(scrolltext);
 		setJMenuBar(menu);  
 		setVisible(true);
-		//PopUpDialog =  new SmallDialogBoxes(this);
 
 		/*
 		Here, First we implemented ActionListener into self class.
@@ -159,14 +158,10 @@ class CombinedControls extends JFrame implements ActionListener {
 		menu.menu_edit_delete.addActionListener(this);
 		menu.menu_edit_selectall.addActionListener(this);
 		menu.menu_edit_find.addActionListener(this);
-		menu.menu_edit_findnext.addActionListener(this);
 		menu.menu_edit_replace.addActionListener(this);
-		menu.menu_edit_replaceall.addActionListener(this);
 		menu.menu_edit_goto.addActionListener(this);
 
 		// menu view
-		menu.menu_view_foreground.addActionListener(this);
-		menu.menu_view_background.addActionListener(this);
 		menu.theme_a.addActionListener(this);
 		menu.theme_b.addActionListener(this);
 		menu.theme_c.addActionListener(this);
@@ -175,6 +170,7 @@ class CombinedControls extends JFrame implements ActionListener {
 		menu.theme_f.addActionListener(this);
 		menu.theme_g.addActionListener(this);
 		menu.theme_h.addActionListener(this);
+		menu.theme_0.addActionListener(this);
 		menu.language_c.addActionListener(this);
 		menu.language_cplus.addActionListener(this);
 		menu.language_csharp.addActionListener(this);
@@ -186,6 +182,8 @@ class CombinedControls extends JFrame implements ActionListener {
 		menu.language_php.addActionListener(this);
 		menu.language_python.addActionListener(this);
 		menu.menu_view_statusbar.addActionListener(this);
+		menu.menu_view_cursorline.addActionListener(this);
+		menu.menu_view_linenumber.addActionListener(this);
 
 		// menu font
 		menu.menu_font_wordwrap.addActionListener(this);
@@ -357,14 +355,6 @@ class CombinedControls extends JFrame implements ActionListener {
 			PopUpDialog = new SmallPopWindows(this, 0);
 		}
 		
-		else if (e.getSource()==menu.menu_edit_findnext){
-			if (debug) {
-				System.out.println("[-] findnext");
-
-			}
-			PopUpDialog = new SmallPopWindows(this, 0);
-		}
-		
 		else if (e.getSource()==menu.menu_edit_replace){
 			if (debug) {
 				System.out.println("[-] replace");
@@ -373,13 +363,6 @@ class CombinedControls extends JFrame implements ActionListener {
 			PopUpDialog = new SmallPopWindows(this, 1);
 		}
 		
-		else if (e.getSource()==menu.menu_edit_replaceall){
-			if (debug) {
-				System.out.println("[-] replaceall");
-
-			}
-			PopUpDialog = new SmallPopWindows(this, 1);
-		}
 		
 		else if (e.getSource()==menu.menu_edit_goto){
 			if (debug) {
@@ -388,23 +371,17 @@ class CombinedControls extends JFrame implements ActionListener {
 			}
 		}
 
-		// menu view		
-		else if (e.getSource()==menu.menu_view_foreground){
+		// Default
+		else if (e.getSource()==menu.theme_0){
 			if (debug) {
-				System.out.println("[-] view foreground");
+				System.out.println("[-] theme selected");
 
 			}
 
+			obj.setBackground(Color.WHITE);
+			obj.setForeground(Color.BLACK);
+			menu.setBackground(new Color(142, 68, 173));
 		}
-		
-		else if (e.getSource()==menu.menu_view_background){
-			if (debug) {
-				System.out.println("[-] view background");
-
-			}
-
-		}
-		
 		// Dark
 		else if (e.getSource()==menu.theme_a){
 			if (debug) {
@@ -571,6 +548,21 @@ class CombinedControls extends JFrame implements ActionListener {
 		else if (e.getSource()==menu.menu_view_statusbar){
 			if (debug) {
 				System.out.println("[-] view statusbar");
+
+			}
+		}
+
+		else if (e.getSource()==menu.menu_view_cursorline){
+			if (debug) {
+				System.out.println("[-] highlight cursor line");
+
+			}
+		}
+
+
+		else if (e.getSource()==menu.menu_view_linenumber){
+			if (debug) {
+				System.out.println("[-] show line number");
 
 			}
 		}
