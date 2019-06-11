@@ -305,6 +305,37 @@ public class AddMenuBar extends JMenuBar {
 		menu_view.setForeground(Color.white);
 		menu_font.setForeground(Color.white);
 		menu_help.setForeground(Color.white);
+
+		//adding color to theme
+		theme_a.setBackground(new Color(61, 61, 61));
+		theme_a.setForeground(new Color(236, 240, 241));
+		theme_b.setBackground(new Color(236, 240, 241));
+		theme_b.setForeground(new Color(34, 47, 62));
+		theme_c.setBackground(new Color(9, 132, 227));
+		theme_c.setForeground(new Color(236, 240, 241));
+		theme_d.setBackground(new Color(111, 30, 81));
+		theme_d.setForeground(new Color(247, 241, 227));
+		theme_e.setBackground(new Color(154, 236, 219));
+		theme_e.setForeground(new Color(44, 58, 71));
+		theme_f.setBackground(new Color(72, 84, 96));
+		theme_f.setForeground(new Color(248, 239, 186));
+		theme_g.setBackground(new Color(44, 58, 71));
+		theme_g.setForeground(new Color(130, 88, 159));
+		theme_h.setBackground(new Color(236, 240, 241));
+		theme_h.setForeground(new Color(44, 62, 80));
+
+		//increase size of theme sub menu
+		theme_a.setPreferredSize(new Dimension(100,30));
+		theme_b.setPreferredSize(new Dimension(100,30));
+		theme_c.setPreferredSize(new Dimension(100,30));
+		theme_d.setPreferredSize(new Dimension(100,30));
+		theme_e.setPreferredSize(new Dimension(100,30));
+		theme_f.setPreferredSize(new Dimension(100,30));
+		theme_g.setPreferredSize(new Dimension(100,30));
+		theme_h.setPreferredSize(new Dimension(100,30));
+
+
+		
 	}
 
 	
