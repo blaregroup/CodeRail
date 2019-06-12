@@ -16,28 +16,36 @@ package CodeRail;
 
 // import modules
 import javax.swing.*;
+import javax.swing.text.*;
 import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
-//import javax.swing.SwingConstants;
+import java.util.regex.*;
 
 
 /*
 	Reference Docs
-		 	https://docs.oracle.com/javase/7/docs/api/javax/swing/JOptionPane.html
+			https://docs.oracle.com/javase/7/docs/api/javax/swing/JOptionPane.html
 			https://stackoverflow.com/questions/6555040/multiple-input-in-joptionpane-showinputdialog/6555051
 			https://docs.oracle.com/javase/7/docs/api/javax/swing/JDialog.html
 			https://tips4java.wordpress.com/2008/10/29/line-painter/
+			https://docs.oracle.com/javase/7/docs/api/java/util/regex/Matcher.html
+			https://docs.oracle.com/javase/7/docs/api/java/lang/String.html
 			https://www.daniweb.com/programming/software-development/threads/417646/find-a-word-in-jtextarea-and-higlight-it
 
 */
 
 
-
+// Class To Handle Many Pop Window Functionalities
 public class SmallPopWindows extends JDialog implements ActionListener{
 
 	// Get in in reverse
-	public int dialogtype; 
+	public int dialogtype; 		// Dialog Type
+	private Pattern pattern;	// Pattern Object 
+	private Matcher matcher;	// Matcher Object
+	private String remindinput="";	// Remind Previous Request Input
+	private Highlighter brush;		// JTextArea Highlighter
+	Highlighter.HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(new Color(255, 190, 118));
 
 
 	// Input Field
@@ -53,7 +61,7 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		super(parent);
 		textobj = texto; // JTextArea object
 		dialogtype = dialog_type_code;
-
+		brush = texto.getHighlighter();
 		GenerateDialog();
 	}
 
@@ -61,7 +69,9 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 	public SmallPopWindows(JTextArea texto, int dialog_type_code){
 		textobj = texto; // JTextArea object
 		dialogtype = dialog_type_code;
+		brush = texto.getHighlighter();
 		GenerateDialog();
+
 	}
 
 	private void GenerateDialog(){
@@ -70,6 +80,17 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 				0 = Find Dialog [Default]
 				1 = Replace dialog
 		*/
+
+		addWindowListener(new WindowAdapter()
+			{
+				@Override
+				public void windowClosing(WindowEvent e)
+				{
+					brush.removeAllHighlights();
+					e.getWindow().dispose();
+				}
+			});
+		
 
 		// Replace Dialog Code
 		if (dialogtype==1) {
@@ -85,24 +106,111 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 	}
 
 	private void perform_find_routine(){
-		String allinput = textobj.getText();
-		String input = input1.getText();
-		System.out.println("request to perform find routine "+input);
+		System.out.println("[+] Request to perform find routine ");
+		find_engine(false);
+	}
+
+	private void perform_findall_routine(){
+		System.out.println("[+] Request to perform findall routine ");
+		find_engine(true);
+	}
+	private void highlight_text(int start, int end){
+		try{
+			brush.addHighlight(start, end, painter);
+		}catch (Exception error){
+			System.out.println(error);
+		}
 
 	}
-	private void perform_findall_routine(){
-		String allinput = textobj.getText();
-		String input = input2.getText();
-		System.out.println("request to perform findall routine "+input);
+	private void find_engine(boolean findall){
+		/*
+		 if findall is true:
+				Then Perform Findall Routine
+		 Else Perform Find Routine
+		*/
+		String input;
+
+		// Retrive Data
+		if (findall){	
+			input = input2.getText();	// Get Findall Input 
+		}
+		else{
+			input = input1.getText();	// Get Find Input
+		}
+		String allinput = textobj.getText(); 	// Get Text
+
+
+		// Check if Input is Provided
+		if (input.length()!=0) {
+			
+			// Check If Input is Changed From Previous Requested Routine
+			if (remindinput.compareTo(input)==0) {
+				System.out.println("[-] Input is Same");
+				
+			}
+			else{
+				// if New Input is Provided
+				System.out.println("[-] Input Changed");
+				remindinput = input;		
+
+				// Compile Regular Expression
+				pattern = Pattern.compile(input);
+				matcher = pattern.matcher(allinput);
+			}			
+
+
+			// Print Information
+			System.out.println("[+] Input Length "+input.length());
+			
+			// Run A Loop
+			while(true){
+
+				if (!findall) {
+					brush.removeAllHighlights();
+					
+				}
+				// if Any Match Found
+				if (matcher.find()) {
+					// Get Start and End
+					int start = matcher.start();
+					int end  = matcher.end();
+					highlight_text(start, end);
+
+					System.out.println("[+] Word Find : "+ start);
+					System.out.println("[-] Here is Your Work "+allinput.substring(start, end));					
+				}else{
+					// if Match Not Found
+					System.out.println("[-] Nothing Matched");
+					matcher.reset();
+					break;
+
+				}
+
+				// if its not find all then Quit in Single Run
+				if (!findall) {
+						break;
+						
+					}				
+			}
+		} 
+		// input word not provided
+		else{
+			System.out.println("[-] Search Input is Empty");
+		}
 	}
+
 	private void perform_replace_routine(){
+		// Complete Text
 		String allinput = textobj.getText();
+		
 		String inp_1 = input1.getText();
 		String inp_2 = input2.getText();
 		System.out.println("request to perform replace "+inp_1+ " with " + inp_2);
 	}
 	private void perform_replaceall_routine(){
+		// Complete Text
 		String allinput = textobj.getText();
+
 		String inp_1 = input1.getText();
 		String inp_2 = input2.getText();
 		System.out.println("request to perform replace all "+inp_1+ " with " + inp_2);
@@ -220,7 +328,7 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 
 		public static void main(String args[]){
 		JFrame root = new JFrame("YUP");
-		JTextArea textarea = new JTextArea("Yup! Working A B A B Abc");
+		JTextArea textarea = new JTextArea("Testing Purpose ABCABCABCABCABCABCABCABCABCABC");
 		
 		JButton button1 = new JButton("Replace");
 		JButton button3 = new JButton("Find..");
