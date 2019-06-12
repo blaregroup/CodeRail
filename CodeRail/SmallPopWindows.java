@@ -40,15 +40,15 @@ import java.util.regex.*;
 public class SmallPopWindows extends JDialog implements ActionListener{
 
 	// Get in in reverse
-	public int dialogtype; 		// Dialog Type
-	private Pattern pattern;	// Pattern Object 
-	private Matcher matcher;	// Matcher Object
+	public int dialogtype; 			// Dialog Type
+	private Pattern pattern;		// Pattern Object 
+	private Matcher matcher;		// Matcher Object
 	private String remindinput="";	// Remind Previous Request Input
 	private Highlighter brush;		// JTextArea Highlighter
 	Highlighter.HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(new Color(255, 190, 118));
 
 
-	// Input Field
+	// Global Input Field
 	private JTextField input1 = new JTextField();
 	private JTextField input2 = new JTextField();
 
@@ -94,17 +94,16 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 
 		// Replace Dialog Code
 		if (dialogtype==1) {
-			
 			InitGUIReplace();
 
 		// Find Dialog Codes
 		}else{
-			
 			InitGUIFind();
 		}
 		InitGUI();
 	}
 
+	// find routine 
 	private void perform_find_routine(){
 		System.out.println("[+] Request to perform find routine ");
 		find_engine(false);
@@ -124,9 +123,12 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 	}
 	private void find_engine(boolean findall){
 		/*
-		 if findall is true:
-				Then Perform Findall Routine
-		 Else Perform Find Routine
+		Method That Can Handle All Find Routine Related Internal Processing Functionality.
+
+		if findall is true:
+			Then Perform Findall Routine
+		Else Perform Find Routine
+		
 		*/
 		String input;
 
@@ -139,14 +141,12 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		}
 		String allinput = textobj.getText(); 	// Get Text
 
-
 		// Check if Input is Provided
 		if (input.length()!=0) {
 			
 			// Check If Input is Changed From Previous Requested Routine
 			if (remindinput.compareTo(input)==0) {
 				System.out.println("[-] Input is Same");
-				
 			}
 			else{
 				// if New Input is Provided
@@ -157,7 +157,6 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 				pattern = Pattern.compile(input);
 				matcher = pattern.matcher(allinput);
 			}			
-
 
 			// Print Information
 			System.out.println("[+] Input Length "+input.length());
@@ -199,21 +198,97 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		}
 	}
 
+
+	private void replace_engine(boolean replaceall){
+
+		/*
+		Replace Engine
+		If ReplaceAll is True:
+			Then Perform Replace All Functionality
+		Else:
+			Single Replace
+
+		*/
+		String input;
+		String replacer;
+
+		// Retrive Data
+
+		replacer = input2.getText();	// Get Replae with 
+		input = input1.getText();		// Get Input
+		String allinput = textobj.getText(); 	// Get Text
+
+
+		// Check if Input is Provided
+		if (input.length()!=0) {
+			
+			// Check If Input is Changed From Previous Requested Routine
+			if (remindinput.compareTo(input)==0) {
+				System.out.println("[-] Input is Same");
+				
+			}
+			else{
+				// if New Input is Provided
+				System.out.println("[-] Input Changed");
+				remindinput = input;		
+
+				// Compile Regular Expression
+				pattern = Pattern.compile(input);
+				matcher = pattern.matcher(allinput);
+			}			
+
+
+			// Print Information
+			System.out.println("[+] Input Length "+input.length());
+			
+			// Run A Loop
+			while(true){
+
+				if (!replaceall) {
+					brush.removeAllHighlights();
+					
+				}
+				// if Any Match Found
+				if (matcher.find()) {
+					// Get Start and End
+					int start = matcher.start();
+					int end  = matcher.end();
+					
+					System.out.println("[+] Word Find : "+ start);
+					System.out.println("[-] Here is Your Work "+allinput.substring(start, end));
+					textobj.replaceRange(replacer , start, end);
+					highlight_text(start, start+replacer.length());					
+				}else{
+					// if Match Not Found
+					System.out.println("[-] Nothing Matched");
+					matcher.reset();
+					break;
+
+				}
+
+				// if its not find all then Quit in Single Run
+				if (!replaceall) {
+						break;
+						
+					}				
+			}
+		} 
+		// input word not provided
+		else{
+			System.out.println("[-] Search Input is Empty");
+		}
+
+
+	}
+
+
 	private void perform_replace_routine(){
-		// Complete Text
-		String allinput = textobj.getText();
-		
-		String inp_1 = input1.getText();
-		String inp_2 = input2.getText();
-		System.out.println("request to perform replace "+inp_1+ " with " + inp_2);
+		System.out.println("[+] Request to perform replace ");
+		replace_engine(false);
 	}
 	private void perform_replaceall_routine(){
-		// Complete Text
-		String allinput = textobj.getText();
-
-		String inp_1 = input1.getText();
-		String inp_2 = input2.getText();
-		System.out.println("request to perform replace all "+inp_1+ " with " + inp_2);
+		System.out.println("[+] Request to perform replace all ");
+		replace_engine(true);
 	}
 
 	public void actionPerformed(ActionEvent e){
