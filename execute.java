@@ -73,6 +73,7 @@ class CombinedControls extends JFrame implements ActionListener {
 	private FileManager FileObj;	// FileManager Module Object
 	private JScrollPane scrolltext;
 	private SmallPopWindows PopUpDialog;
+	
 
 	// constructor
 	CombinedControls(){
@@ -111,6 +112,11 @@ class CombinedControls extends JFrame implements ActionListener {
 
 		// File Manager Module Object
 		FileObj = new FileManager(obj);
+
+		
+		
+                        
+
 
 
 		// Add Object
@@ -382,6 +388,7 @@ class CombinedControls extends JFrame implements ActionListener {
 			obj.setBackground(Color.WHITE);
 			obj.setForeground(Color.BLACK);
 			menu.setBackground(new Color(142, 68, 173));
+			obj.setCaretColor(Color.BLACK);
 		}
 		// Dark
 		else if (e.getSource()==menu.theme_a){
@@ -393,6 +400,7 @@ class CombinedControls extends JFrame implements ActionListener {
 			obj.setBackground(new Color(61, 61, 61));
 			obj.setForeground(new Color(236, 240, 241));
 			menu.setBackground(new Color(142, 68, 173));
+			obj.setCaretColor(new Color(236, 240, 241));
 		}
 		// Light
 		else if (e.getSource()==menu.theme_b){
@@ -403,6 +411,7 @@ class CombinedControls extends JFrame implements ActionListener {
 			obj.setBackground(new Color(236, 240, 241));
 			obj.setForeground(new Color(34, 47, 62));
 			menu.setBackground(new Color(211, 84, 0));
+			obj.setCaretColor(new Color(34, 47, 62));
 		}
 		// Cool
 		else if (e.getSource()==menu.theme_c){
@@ -413,6 +422,7 @@ class CombinedControls extends JFrame implements ActionListener {
 			obj.setBackground(new Color(9, 132, 227));
 			obj.setForeground(new Color(236, 240, 241));
 			menu.setBackground(new Color(44, 62, 80));
+			obj.setCaretColor(new Color(236,240,241));
 		}
 		// Vim
 		else if (e.getSource()==menu.theme_d){
@@ -423,6 +433,7 @@ class CombinedControls extends JFrame implements ActionListener {
 			obj.setBackground(new Color(111, 30, 81));
 			obj.setForeground(new Color(247, 241, 227));
 			menu.setBackground(new Color(179, 55, 113));
+			obj.setCaretColor(new Color(247, 241, 227));
 		}
 		// Ocean
 		else if (e.getSource()==menu.theme_e){
@@ -433,6 +444,7 @@ class CombinedControls extends JFrame implements ActionListener {
 			obj.setBackground(new Color(154, 236, 219));
 			obj.setForeground(new Color(44, 58, 71));
 			menu.setBackground(new Color(130, 88, 159));
+			obj.setCaretColor(new Color(44, 58, 71));
 		}
 		// Arc
 		else if (e.getSource()==menu.theme_f){
@@ -443,6 +455,7 @@ class CombinedControls extends JFrame implements ActionListener {
 			obj.setBackground(new Color(72, 84, 96));
 			obj.setForeground(new Color(248, 239, 186));
 			menu.setBackground(new Color(44, 58, 71));
+			obj.setCaretColor(new Color(248, 239, 186));
 
 		}
 		// Pro
@@ -454,6 +467,7 @@ class CombinedControls extends JFrame implements ActionListener {
 			obj.setBackground(new Color(44, 58, 71));
 			obj.setForeground(new Color(130, 88, 159));
 			menu.setBackground(new Color(24, 44, 97));
+			obj.setCaretColor(new Color(130, 88, 159));
 		}
 		// MAC
 		else if (e.getSource()==menu.theme_h){
@@ -464,6 +478,7 @@ class CombinedControls extends JFrame implements ActionListener {
 			obj.setBackground(new Color(236, 240, 241));
 			obj.setForeground(new Color(44, 62, 80));
 			menu.setBackground(new Color(44, 58, 71));
+			obj.setCaretColor(new Color(44, 62, 80));
 		}
 
 		else if (e.getSource()==menu.language_plain){
@@ -471,6 +486,7 @@ class CombinedControls extends JFrame implements ActionListener {
 				System.out.println("[-] plain language selected");
 
 			}
+			
 
 		}
 
