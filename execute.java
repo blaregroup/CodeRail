@@ -21,24 +21,19 @@ import CodeRail.*;
 
 			himanshu sharma
 			himanshusharma2972@gmail.com
-================================================================================
-								README
-================================================================================
-We have decided to follow, Divide and Conquer strategy. so, in this project, 
-CodeRail folder is our source of module and class. we are going to implement
-various types of functionality and features in seperate class files. so, that
-Contributors of Project don't have to mess with complete project code to understand
-any specific functions.
- 
-*/
 
-/*
-This Combined Controls class play the role of connector or main control. basically,
-this create object of all CodeRail Subdirectory class and then, connect them.
+	================================================================================
+									README
+	================================================================================
+	We have decided to follow, Divide and Conquer strategy. so, in this project, 
+	CodeRail folder is our source of module and class. we are going to implement
+	various types of functionality and features in seperate class files. so, that
+	Contributors of Project don't have to mess with complete project code to understand
+	any specific functions.
+	 
+	This Combined Controls class play the role of connector or main control. basically,
+	this create object of all CodeRail Subdirectory class and then, connect them.
 
-*/
-
-/*
 	USEFUL Documentation:
 		https://docs.oracle.com/javase/7/docs/api/javax/swing/JScrollPane.html
 
@@ -51,9 +46,6 @@ class CombinedControls extends JFrame implements ActionListener {
 
 		ActionLIstener: Implementation
 
-	*/
-
-	/*
 				Configurations Settings
 
 	*/
@@ -84,10 +76,6 @@ class CombinedControls extends JFrame implements ActionListener {
 		// Window Configuration 
 		setSize(window_width, window_height);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setVisible(true);
-		setFocusable(true);
-
-		
 
 		// Create TextArea Object [CodeRail.editor]
 		obj = new Editor(editor_width, editor_height);
@@ -103,7 +91,6 @@ class CombinedControls extends JFrame implements ActionListener {
 		manager = new UndoManager();
 		obj.getDocument().addUndoableEditListener(manager);
 
-		
 		// Create Menu Bar Object [CodeRail.AddMenuBar]
 		menu = new AddMenuBar();
 		
@@ -113,18 +100,13 @@ class CombinedControls extends JFrame implements ActionListener {
 		// File Manager Module Object
 		FileObj = new FileManager(obj);
 
-		
-		
-                        
-
-
 
 		// Add Object
 		add(menu);
 		add(scrolltext);
 		setJMenuBar(menu);  
 		setVisible(true);
-
+		setFocusable(true);
 		/*
 		Here, First we implemented ActionListener into self class.
 		and then, register this self listener classes with menu bar

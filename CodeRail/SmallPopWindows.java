@@ -12,18 +12,8 @@ package CodeRail;
 
 
 			himanshu sharma
-*/
-
-// import modules
-import javax.swing.*;
-import javax.swing.text.*;
-import javax.swing.event.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.regex.*;
 
 
-/*
 	Reference Docs
 			https://docs.oracle.com/javase/7/docs/api/javax/swing/JOptionPane.html
 			https://stackoverflow.com/questions/6555040/multiple-input-in-joptionpane-showinputdialog/6555051
@@ -34,6 +24,15 @@ import java.util.regex.*;
 			https://www.daniweb.com/programming/software-development/threads/417646/find-a-word-in-jtextarea-and-higlight-it
 
 */
+
+// import modules
+import javax.swing.*;
+import javax.swing.text.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.regex.*;
+
 
 
 // Class To Handle Many Pop Window Functionalities

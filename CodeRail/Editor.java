@@ -11,6 +11,13 @@ package CodeRail;
 
 
 			himanshu sharma
+	
+
+
+		Useful Reference Docs
+			 https://docs.oracle.com/javase/7/docs/api/javax/swing/JTextArea.html
+			 https://docs.oracle.com/javase/7/docs/api/java/awt/Font.html
+
 */
 
 
@@ -20,25 +27,28 @@ import javax.swing.event.*;
 import java.awt.event.*;
 import java.awt.*;
 
-// https://docs.oracle.com/javase/7/docs/api/javax/swing/JTextArea.html
-// https://docs.oracle.com/javase/7/docs/api/java/awt/Font.html
+
 // editor class name
 public class Editor extends JTextArea implements DocumentListener {
 	
 	private float fontsize = 12.0f;
-
+	private static float font_change_rate = 4.0f;
+	public JTextArea linenumber_column;
 
 	public void increasefont(){
-		fontsize += 4.0f ;
+		// increase font size
+		fontsize += font_change_rate ;
 		applychanges();
 	}
 	public void decreasefont(){
-		fontsize -= 4.0f;
+		// decrease font size
+		fontsize -= font_change_rate;
 		applychanges();
 	}
 
 
 	private void applychanges(){
+		// apply font change
 		setFont(getFont().deriveFont(fontsize));
 		
 	}
@@ -50,11 +60,13 @@ public class Editor extends JTextArea implements DocumentListener {
 		// Configurations
 		setVisible(true);
 		setFocusable(true);
-	
-		//setBackground(Color.blue);
-		//setForeground(Color.white);
-		//setFont(new Font("",Font.BOLD,25));
+
+		// Line Numbers Text Area Column
+		linenumber_column = new JTextArea();
+		linenumber_column.setBackground(Color.GRAY);
 		
+
+	
 		getDocument().addDocumentListener(this);
 	}
 
@@ -105,12 +117,15 @@ public class Editor extends JTextArea implements DocumentListener {
 		//obj1.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		obj1.setSize(300, 400);
 		obj1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		//obj1.setVisible(true);
-		//obj1.setFocusable(true);
 		
 		// Create Text Area Object
 		Editor obj = new Editor(200, 300);
-		obj1.add(obj);
+		obj1.add(obj, BorderLayout.NORTH);
+		//obj1.add(obj.linenumber_column, BorderLayout.SOUTH);
+		
+		obj1.setVisible(true);
+		obj1.setFocusable(true);
+		
 		
 	}
 
