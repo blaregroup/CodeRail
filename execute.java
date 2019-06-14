@@ -39,7 +39,7 @@ import CodeRail.*;
 
 
 */
-class CombinedControls extends JFrame implements ActionListener {
+class CombinedControls extends JFrame implements ActionListener,ItemListener {
 	/*
 
 		JFrame : Class To Create Main Window Object
@@ -53,7 +53,7 @@ class CombinedControls extends JFrame implements ActionListener {
 	private static final int window_width = 1000;
 	private static final int window_height = 700;
 	private static final int editor_width = 900;
-	private static final int editor_height = 700;
+	private static final int editor_height = 400;
 	private static final boolean debug = true;
 
 
@@ -65,7 +65,7 @@ class CombinedControls extends JFrame implements ActionListener {
 	private FileManager FileObj;	// FileManager Module Object
 	private JScrollPane scrolltext;
 	private SmallPopWindows PopUpDialog;
-	
+	private StatusBar statusbarObj;
 
 	// constructor
 	CombinedControls(){
@@ -100,10 +100,13 @@ class CombinedControls extends JFrame implements ActionListener {
 		// File Manager Module Object
 		FileObj = new FileManager(obj);
 
-
+		//Status bar
+		statusbarObj =new StatusBar(obj);
 		// Add Object
+		
 		add(menu);
 		add(scrolltext);
+		add(statusbarObj,BorderLayout.SOUTH);
 		setJMenuBar(menu);  
 		setVisible(true);
 		setFocusable(true);
@@ -169,7 +172,7 @@ class CombinedControls extends JFrame implements ActionListener {
 		menu.language_plain.addActionListener(this);
 		menu.language_php.addActionListener(this);
 		menu.language_python.addActionListener(this);
-		menu.menu_view_statusbar.addActionListener(this);
+		menu.menu_view_statusbar.addItemListener(this);
 		menu.menu_view_cursorline.addActionListener(this);
 		menu.menu_view_linenumber.addActionListener(this);
 
@@ -189,6 +192,17 @@ class CombinedControls extends JFrame implements ActionListener {
 		System.exit(0);
 	}
 
+	//adding action to checkbox menu like status bar,linenumber,cursor
+	public void itemStateChanged(ItemEvent e) 
+	{
+		System.out.println("status bar menu item changed");
+		if(e.getStateChange()==1)
+		{
+			add(statusbarObj);revalidate();
+		}
+		else{ remove(statusbarObj); revalidate();}
+	}
+	
 	public void actionPerformed(ActionEvent e){
 		if (debug) {
 			System.out.println(e.getSource());
@@ -549,6 +563,7 @@ class CombinedControls extends JFrame implements ActionListener {
 				System.out.println("[-] view statusbar");
 
 			}
+
 		}
 
 		else if (e.getSource()==menu.menu_view_cursorline){

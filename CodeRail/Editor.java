@@ -34,6 +34,7 @@ public class Editor extends JTextArea implements DocumentListener {
 	private float fontsize = 12.0f;
 	private static float font_change_rate = 4.0f;
 	public JTextArea linenumber_column;
+	
 
 	public void increasefont(){
 		// increase font size
@@ -65,7 +66,7 @@ public class Editor extends JTextArea implements DocumentListener {
 		linenumber_column = new JTextArea();
 		linenumber_column.setBackground(Color.GRAY);
 		
-
+		
 	
 		getDocument().addDocumentListener(this);
 	}
