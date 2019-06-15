@@ -55,6 +55,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 	private static final int editor_width = 900;
 	private static final int editor_height = 400;
 	private static final boolean debug = true;
+	private static boolean editing = false;
 	
 
 
@@ -67,6 +68,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 	private SmallPopWindows PopUpDialog; // pop up Dialog Box Windows
 	private StatusBar statusbarObj; // Status Bar
 	private LineNumberColumn clm;	// Line Numbers
+	private JPanel panel;
 
 	// constructor
 	CombinedControls(){
@@ -93,8 +95,14 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 		*/
 		obj = new Editor(editor_width, editor_height);
 		clm = new LineNumberColumn(obj);
-		JScrollPane scrolltext = new JScrollPane(obj); 
-		scrolltext.setRowHeaderView(clm);
+		panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		panel.add(clm, BorderLayout.WEST);
+		panel.add(obj, BorderLayout.EAST);
+		panel.setVisible(true);
+		//JScrollPane scrolltext = new JScrollPane(obj);
+		JScrollPane scrolltext = new JScrollPane(panel); 
+		//scrolltext.setRowHeaderView(clm);
 		obj.getDocument().addDocumentListener(this);
 		
 
@@ -147,22 +155,24 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 
 	}
     public void changedUpdate(DocumentEvent documentEvent) {
-	    	System.out.println("hhh");
-	    	clm.update_line_number_configurations();
+    	// System.out.println("Document Change Update");
+    	clm.update_line_number_configurations();
+    	editing = true;
+        };
 
-	        };
+    public void removeUpdate(DocumentEvent documentEvent) {
+    	// System.out.println("remove Update");
+    	clm.UpdateLineNumbers();
+    	statusbarObj.TotalLine();
+    	editing = true;
+        };
 
-	    public void removeUpdate(DocumentEvent documentEvent) {
-	    	System.out.println("hel");
-	    	clm.UpdateLineNumbers();
-	    	statusbarObj.TotalLine();
-	        };
-
-	    public void insertUpdate(DocumentEvent documentEvent) {
-	    	System.out.println("rem");
-	    	clm.UpdateLineNumbers();
-	    	statusbarObj.TotalLine();
-	        };
+    public void insertUpdate(DocumentEvent documentEvent) {
+    	System.out.println("rem");
+    	clm.UpdateLineNumbers();
+    	statusbarObj.TotalLine();
+    	editing = true;
+        };
 
 	public void registerListener(){
 		/*
@@ -226,11 +236,45 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 		// menu help
 		menu.menu_help_topic.addActionListener(this);
 		menu.menu_help_about.addActionListener(this);
+
+		// Override Close Operation
+		addWindowListener(new WindowAdapter(){
+			@Override
+			public void windowClosing(WindowEvent e){
+				exit();
+			}
+		});
 		
 	}
 
 	private void exit(){
-		System.exit(0);
+		System.out.println("[-] Safe Protocol to Exit..");
+
+		// if any changes made
+		if(editing){
+
+			int ask = JOptionPane.showConfirmDialog(null, 
+					"Are you want to Save The Changes");
+
+			// Yes, Save Changes and Close
+			if (ask==JOptionPane.YES_OPTION) {
+				FileObj.SaveFile();
+				System.exit(0);
+									
+			// Don't Save Changes But Close	
+			}else if (ask==JOptionPane.NO_OPTION) {
+				System.exit(0);
+
+			// Don't Do anything
+			}else{
+
+			}
+
+
+		}else{
+			System.exit(0);
+		}
+		
 	}
 
 	//adding action to checkbox menu like status bar,linenumber,cursor
@@ -330,6 +374,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 				System.out.println("[-] exit");
 
 			}
+
 			exit();
 		}
 
