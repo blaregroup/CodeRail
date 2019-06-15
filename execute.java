@@ -55,7 +55,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 	private static final int editor_width = 900;
 	private static final int editor_height = 400;
 	private static final boolean debug = true;
-
+	
 
 
 	// CodeRail Module Objects
@@ -96,6 +96,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 		JScrollPane scrolltext = new JScrollPane(obj); 
 		scrolltext.setRowHeaderView(clm);
 		obj.getDocument().addDocumentListener(this);
+		
 
 
 		
@@ -146,16 +147,19 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 
 	}
     public void changedUpdate(DocumentEvent documentEvent) {
+	    	System.out.println("hhh");
 	    	clm.update_line_number_configurations();
 
 	        };
 
 	    public void removeUpdate(DocumentEvent documentEvent) {
+	    	System.out.println("hel");
 	    	clm.UpdateLineNumbers();
 	    	statusbarObj.TotalLine();
 	        };
 
 	    public void insertUpdate(DocumentEvent documentEvent) {
+	    	System.out.println("rem");
 	    	clm.UpdateLineNumbers();
 	    	statusbarObj.TotalLine();
 	        };
@@ -292,6 +296,9 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 
 			}
 			FileObj.OpenFileChooser();
+			clm.UpdateLineNumbers();
+			statusbarObj.TotalLine();
+
 		}
 		
 		else if (e.getSource()==menu.menu_file_save){
@@ -422,6 +429,10 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			obj.setForeground(Color.BLACK);
 			menu.setBackground(new Color(142, 68, 173));
 			obj.setCaretColor(Color.BLACK);
+			clm.setBackground(new Color(226, 230, 231));
+			clm.setForeground(new Color(34, 47, 62));
+			statusbarObj.setBackground(new Color(226, 230, 231));
+			statusbarObj.setcomponentcolor(34,47,62);
 		}
 		// Dark
 		else if (e.getSource()==menu.theme_a){
@@ -434,6 +445,10 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			obj.setForeground(new Color(236, 240, 241));
 			menu.setBackground(new Color(142, 68, 173));
 			obj.setCaretColor(new Color(236, 240, 241));
+			clm.setBackground(new Color(75, 75, 75));
+			clm.setForeground(new Color(236, 240, 241));
+			statusbarObj.setBackground(new Color(75, 75, 75));
+			statusbarObj.setcomponentcolor(236,240,241);
 		}
 		// Light
 		else if (e.getSource()==menu.theme_b){
@@ -445,6 +460,10 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			obj.setForeground(new Color(34, 47, 62));
 			menu.setBackground(new Color(211, 84, 0));
 			obj.setCaretColor(new Color(34, 47, 62));
+			clm.setBackground(new Color(226, 230, 231));
+			clm.setForeground(new Color(34, 47, 62));
+			statusbarObj.setBackground(new Color(226, 230, 231));
+			statusbarObj.setcomponentcolor(34,47,62);
 		}
 		// Cool
 		else if (e.getSource()==menu.theme_c){
@@ -456,6 +475,10 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			obj.setForeground(new Color(236, 240, 241));
 			menu.setBackground(new Color(44, 62, 80));
 			obj.setCaretColor(new Color(236,240,241));
+			clm.setBackground(new Color(1, 122, 217));
+			clm.setForeground(new Color(236, 240, 241));
+			statusbarObj.setBackground(new Color(1, 122, 217));
+			statusbarObj.setcomponentcolor(236,240,241);
 		}
 		// Vim
 		else if (e.getSource()==menu.theme_d){
@@ -467,6 +490,10 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			obj.setForeground(new Color(247, 241, 227));
 			menu.setBackground(new Color(179, 55, 113));
 			obj.setCaretColor(new Color(247, 241, 227));
+			clm.setBackground(new Color(101, 20, 71));
+			clm.setForeground(new Color(247, 241, 227));
+			statusbarObj.setBackground(new Color(101, 20, 71));
+			statusbarObj.setcomponentcolor(247, 241, 227);
 		}
 		// Ocean
 		else if (e.getSource()==menu.theme_e){
@@ -478,6 +505,10 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			obj.setForeground(new Color(44, 58, 71));
 			menu.setBackground(new Color(130, 88, 159));
 			obj.setCaretColor(new Color(44, 58, 71));
+			clm.setBackground(new Color(144, 226, 209));
+			clm.setForeground(new Color(44, 58, 71));
+			statusbarObj.setBackground(new Color(144, 226, 209));
+			statusbarObj.setcomponentcolor(44, 58, 71);
 		}
 		// Arc
 		else if (e.getSource()==menu.theme_f){
@@ -489,6 +520,10 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			obj.setForeground(new Color(248, 239, 186));
 			menu.setBackground(new Color(44, 58, 71));
 			obj.setCaretColor(new Color(248, 239, 186));
+			clm.setBackground(new Color(62, 74, 86));
+			clm.setForeground(new Color(248, 239, 186));
+			statusbarObj.setBackground(new Color(62, 74, 86));
+			statusbarObj.setcomponentcolor(248, 239, 186);
 
 		}
 		// Pro
@@ -501,6 +536,10 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			obj.setForeground(new Color(130, 88, 159));
 			menu.setBackground(new Color(24, 44, 97));
 			obj.setCaretColor(new Color(130, 88, 159));
+			clm.setBackground(new Color(34, 48, 61));
+			clm.setForeground(new Color(130, 88, 159));
+			statusbarObj.setBackground(new Color(34, 48, 61));
+			statusbarObj.setcomponentcolor(130, 88, 159);
 		}
 		// MAC
 		else if (e.getSource()==menu.theme_h){
@@ -512,6 +551,10 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			obj.setForeground(new Color(44, 62, 80));
 			menu.setBackground(new Color(44, 58, 71));
 			obj.setCaretColor(new Color(44, 62, 80));
+			clm.setBackground(new Color(226, 230, 231));
+			clm.setForeground(new Color(44, 62, 80));
+			statusbarObj.setBackground(new Color(226, 230, 231));
+			statusbarObj.setcomponentcolor(44, 62, 80);
 		}
 
 		else if (e.getSource()==menu.language_plain){

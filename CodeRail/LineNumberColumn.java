@@ -56,8 +56,8 @@ public class LineNumberColumn extends JTextArea {
     public void update_line_number_configurations() {
         this.setFont(this.txtarea.getFont());
         this.setEditable(false);
-        this.setBackground(Color.GRAY);
-        this.setForeground(Color.WHITE);
+        this.setBackground(new Color(226, 230, 231));
+        this.setForeground(new Color(34, 47, 62));
         this.setMargin(new Insets(5, 5, 5, 5));
         this.txtarea.setMargin(new Insets(5, 5, 5, 5));
     }

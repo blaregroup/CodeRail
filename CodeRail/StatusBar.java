@@ -22,7 +22,9 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.event.*;
 import java.awt.*;
-
+import javax.swing.text.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 
 /*
@@ -54,17 +56,23 @@ class RowHighlighter implements CaretListener {
 */
 
 // status bar
-public class StatusBar extends JPanel {
+public class StatusBar extends JPanel{
 	
 	//variables to store some useful data
 	private Editor editor;
 	private JLabel TabSize   = new JLabel();
 	private JLabel TotalLine = new JLabel();
-	private JLabel Cursor    = new JLabel();
+	//private JLabel Cursor    = new JLabel();
+	private JLabel CursorPosition = new JLabel();
+	private	Caret caret;
+	private Point p;
+	private double line;
+	private double column;
 	private int tabsize;
 	private int totalline;
 	
-	
+		
+		
 
 	// Constructor
 	public StatusBar(Editor e){
@@ -75,12 +83,35 @@ public class StatusBar extends JPanel {
 		// Configurations
 		setVisible(true);
 		setFocusable(true);
-		setBackground(Color.WHITE);
+		setBackground(new Color(226, 230, 231));
 		setLayout(new FlowLayout(FlowLayout.RIGHT,10,5));
+		caret=editor.getCaret();
 		
+		
+
+		
+		/*
+			not working 
+			ChangeListener listener = new ChangeListener() {
+		  public void stateChanged(ChangeEvent caretEvent) {
+		   	    
+		   	   // caret=editor.getCaret();
+		   	    p=caret.getMagicCaretPosition();
+		    try{
+		    	line=p.getX();
+		    	column=p.getY();
+		    	System.out.println("a="+line+"b="+column);
+		    	CursorPosition();
+				}
+				catch(Exception m){}
+		  }
+		};
+		caret.addChangeListener( listener);*/
+
 		//Calling  methods
 		TabSize();
 		TotalLine();
+		CursorPosition();
 	}
 
 	
@@ -103,6 +134,28 @@ public class StatusBar extends JPanel {
 		add(TotalLine);
 	}
 
+	public void CursorPosition()
+	{	
+		p=caret.getMagicCaretPosition();
+		try{
+		line=p.getX();
+		column=p.getY();
+		
+		}
+		catch(Exception k)
+		{}
+		
+		System.out.println("x="+line+"y="+column);
+		CursorPosition.setText("line:"+(int)line+", column:"+(int)column);
+		add(CursorPosition);
+
+	}
+
+	public void setcomponentcolor(int r,int g,int b)
+	{
+		TabSize.setForeground(new Color(r,g,b));
+		TotalLine.setForeground(new Color(r,g,b));
+	}
 }
 
 
