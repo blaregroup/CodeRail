@@ -39,7 +39,7 @@ import CodeRail.*;
 
 
 */
-class CombinedControls extends JFrame implements ActionListener,ItemListener {
+class CombinedControls extends JFrame implements ActionListener,ItemListener, DocumentListener {
 	/*
 
 		JFrame : Class To Create Main Window Object
@@ -63,53 +63,75 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener {
 	private Editor obj;				// Editor Module
 	private UndoManager manager; 	// Undo Manager
 	private FileManager FileObj;	// FileManager Module Object
-	private JScrollPane scrolltext;
-	private SmallPopWindows PopUpDialog;
-	private StatusBar statusbarObj;
+	private JScrollPane scrolltext;	// Scrollbar Pane
+	private SmallPopWindows PopUpDialog; // pop up Dialog Box Windows
+	private StatusBar statusbarObj; // Status Bar
+	private LineNumberColumn clm;	// Line Numbers
 
 	// constructor
 	CombinedControls(){
 
-		// [https://docs.oracle.com/javase/7/docs/api/javax/swing/JFrame.html]
+		/* 
+		This Class Specially Created To Handle Listener Implementation and Generate Calls To Required
+		Methods.
+
+			[https://docs.oracle.com/javase/7/docs/api/javax/swing/JFrame.html] 
+
+		*/
 		super(window_name);
 
-		// Window Configuration 
-		setSize(window_width, window_height);
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-		// Create TextArea Object [CodeRail.editor]
+		/* 
+
+		Create TextArea Object [CodeRail.editor] 
+			1. Create Editor Object
+			2. Create Line Number Object
+			3. Create ScrollPane Object and Add Editor Object
+			4. Add Line Number Object in Scroll Pane
+			5. Connect Event Listeners to This Class
+			6. Initialise Configurations
+		*/
 		obj = new Editor(editor_width, editor_height);
+		clm = new LineNumberColumn(obj);
 		JScrollPane scrolltext = new JScrollPane(obj); 
+		scrolltext.setRowHeaderView(clm);
+		obj.getDocument().addDocumentListener(this);
 
-		Font font_family = new Font("Courier", Font.BOLD,16);
+
 		
-		//set font for JTextArea Object
+		/* set font for JTextArea Object */
+		Font font_family = new Font("Courier", Font.BOLD,16);
 		obj.setFont(font_family);
 		
 
-		// Undo manager to track change and undo changes
+		/* Undo manager to track change and undo changes */
 		manager = new UndoManager();
 		obj.getDocument().addUndoableEditListener(manager);
 
-		// Create Menu Bar Object [CodeRail.AddMenuBar]
+		/* Create Menu Bar Object [CodeRail.AddMenuBar] */
 		menu = new AddMenuBar();
-		
-		//setting backgound color of menu bar
 		menu.setBackground(new Color(142, 68, 173));
 
-		// File Manager Module Object
+		/* File Manager Module Object */
 		FileObj = new FileManager(obj);
 
-		//Status bar
-		statusbarObj =new StatusBar(obj);
-		// Add Object
+		/* Status bar */
+		statusbarObj = new StatusBar(obj);
 		
-		add(menu);
-		add(scrolltext);
-		add(statusbarObj,BorderLayout.SOUTH);
-		setJMenuBar(menu);  
+
+
+		/* Window Configuration  */  
+		setSize(window_width, window_height); // Set Size
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // Close Operation
+		add(menu);								// Menu
+		add(scrolltext); 						// Scroll Text
+		add(statusbarObj,BorderLayout.SOUTH); 	// Status Bar
+		setJMenuBar(menu);  					// Menu
 		setVisible(true);
 		setFocusable(true);
+		clm.update_line_number_configurations();
+
+
 		/*
 		Here, First we implemented ActionListener into self class.
 		and then, register this self listener classes with menu bar
@@ -123,6 +145,21 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener {
 		registerListener();
 
 	}
+    public void changedUpdate(DocumentEvent documentEvent) {
+	    	clm.update_line_number_configurations();
+
+	        };
+
+	    public void removeUpdate(DocumentEvent documentEvent) {
+	    	clm.UpdateLineNumbers();
+	    	statusbarObj.TotalLine();
+	        };
+
+	    public void insertUpdate(DocumentEvent documentEvent) {
+	    	clm.UpdateLineNumbers();
+	    	statusbarObj.TotalLine();
+	        };
+
 	public void registerListener(){
 		/*
 		Register Self Class ActionListener With Menu Bar Objects.
@@ -598,18 +635,19 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener {
 		else if (e.getSource()==menu.menu_font_font_size_large){
 			if (debug) {
 				System.out.println("[-] font size large");
-				obj.increasefont();
 
 			}
-			//obj.setFont(new Font("",Font.BOLD,30));   
+			obj.increasefont();
+			clm.update_line_number_configurations();
 		}
 		else if (e.getSource()==menu.menu_font_font_size_small){
 			if (debug) {
 				System.out.println("[-] font size small");
 
+
 			}
 			obj.decreasefont();
-			//obj.setFont(new Font("",Font.BOLD,13));
+			clm.update_line_number_configurations();
 		}
 
 		// menu help

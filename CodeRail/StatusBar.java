@@ -24,15 +24,46 @@ import java.awt.event.*;
 import java.awt.*;
 
 
+
+/*
+
+
+
+class RowHighlighter implements CaretListener {
+    private Editor txtarea;
+    private Highlighter brush;
+    private Highlighter.HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(new Color(206, 214, 224));
+
+    RowHighlighter(Editor editor) {
+        this.txtarea = editor;
+        this.brush = editor.getHighlighter();
+    }
+
+    private void highlight_cursor(CaretEvent caretEvent) {
+    }
+
+    @Override
+    public void caretUpdate(CaretEvent caretEvent) {
+        this.highlight_cursor(caretEvent);
+    }
+}
+
+
+
+
+*/
+
 // status bar
 public class StatusBar extends JPanel {
 	
 	//variables to store some useful data
 	private Editor editor;
-	private JLabel TabSize=new JLabel();
+	private JLabel TabSize   = new JLabel();
 	private JLabel TotalLine = new JLabel();
+	private JLabel Cursor    = new JLabel();
 	private int tabsize;
 	private int totalline;
+	
 	
 
 	// Constructor

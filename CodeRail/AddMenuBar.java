@@ -11,15 +11,7 @@ package CodeRail;
 
 
 			himanshu sharma
-*/
 
-
-// import modules
-import javax.swing.*;
-import java.awt.event.*;
-import java .awt.*;
-
-/*
 Related Doc Urls:
 
 	https://docs.oracle.com/javase/7/docs/api/javax/swing/text/JTextComponent.html
@@ -30,6 +22,12 @@ Related Doc Urls:
 
 
 */
+
+
+// import modules
+import javax.swing.*;
+import java.awt.event.*;
+import java .awt.*;
 
 
 // AddMenuBar Class

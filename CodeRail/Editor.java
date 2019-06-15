@@ -29,11 +29,10 @@ import java.awt.*;
 
 
 // editor class name
-public class Editor extends JTextArea implements DocumentListener {
+public class Editor extends JTextArea {
 	
 	private float fontsize = 12.0f;
 	private static float font_change_rate = 4.0f;
-	public JTextArea linenumber_column;
 	
 
 	public void increasefont(){
@@ -62,32 +61,10 @@ public class Editor extends JTextArea implements DocumentListener {
 		setVisible(true);
 		setFocusable(true);
 
-		// Line Numbers Text Area Column
-		linenumber_column = new JTextArea();
-		linenumber_column.setBackground(Color.GRAY);
-		
-		
-	
-		getDocument().addDocumentListener(this);
 	}
 
-	// Overrided Event Listeners
-	public void changedUpdate(DocumentEvent doc){
-
-	}
-
-	//
-	public void removeUpdate(DocumentEvent doc){
+	/* 
 	
-	
-	}
-	
-	//
-	public void insertUpdate(DocumentEvent doc){
-
-	}
-
-	/*
 
 	USEFUL Methods
 
@@ -115,14 +92,12 @@ public class Editor extends JTextArea implements DocumentListener {
 		JFrame obj1 = new JFrame("CodeRail Text");
 
 		// Window Configuration
-		//obj1.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		obj1.setSize(300, 400);
 		obj1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
 		// Create Text Area Object
 		Editor obj = new Editor(200, 300);
-		obj1.add(obj, BorderLayout.NORTH);
-		//obj1.add(obj.linenumber_column, BorderLayout.SOUTH);
+		obj1.add(obj);
 		
 		obj1.setVisible(true);
 		obj1.setFocusable(true);
