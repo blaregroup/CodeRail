@@ -58,6 +58,7 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 
 	private JButton github_link;
 	private JButton blaregroup_link;
+	private JButton license_link;
 
 
 	public SmallPopWindows(JFrame parent, JTextArea texto, int dialog_type_code){
@@ -336,6 +337,18 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 				    }
 
 		}
+		else if(e.getSource()==license_link)
+		{
+			//license_link
+			if (Desktop.isDesktopSupported()) 
+					{
+				      try {
+				        	Desktop.getDesktop().browse(new URI("https://github.com/blaregroup/CodeRail/blob/master/LICENSE"));
+				      }
+				  	  catch (Exception m) {}
+				    }
+
+		}
 		else{
 			// Find Window Findall Button Clicked
 			if(dialogtype==0){
@@ -359,7 +372,7 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		setLocationRelativeTo(null);
 		if(dialogtype==2)
 		{
-			setSize(800,700);
+			setSize(700,480);
 		}
 
 	}
@@ -441,69 +454,121 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 
 	private void InitGUIAbout(){
 
-		setTitle("About");
+		setTitle("About CodeRail ");
 		setLayout(null);
-	
-		//declaring useful variables
-		JLabel head=new JLabel("CODERAIL TEXT EDITOR");
-		JLabel github=new JLabel("Github:- ");
-		JLabel blareGroup= new JLabel("BlareGroup:- ");
-		JLabel developer= new JLabel("Developed By");
-		JLabel copyright= new JLabel("© 2019 BLARE GROUP(www.blaregroup.com)");
-		github_link= new JButton("Click me");
-		blaregroup_link = new JButton("Click me");
-
 		
+
+		//creating layout 
+		JPanel mainpanel=new JPanel();
+		JPanel leftpanel=new JPanel();
+		JPanel rightpanel=new JPanel();
+		JPanel bottompanel=new JPanel();
+		
+		
+		//adding useful component
+		JLabel head=new JLabel("<html><b>CodeRail</b> Text Editor</html>");
 		JTextArea about=new JTextArea();
+		JLabel copyright= new JLabel("© 2019 BLARE GROUP(www.blaregroup.com)");
+		Icon img = new ImageIcon(getClass().getResource("logo.jpg")); 
+		JLabel logo = new JLabel(img);
+		
+		//adding button
+		github_link= new JButton("Github");
+		blaregroup_link = new JButton("visit Website");
+		license_link = new JButton("License");
+		
+		
 		
 		
 
-		//heading
-		head.setFont(new Font("",Font.BOLD,30));
+		//head label editing
+		head.setFont(new Font("",Font.PLAIN,30));
+		head.setForeground(Color.WHITE);
 
 
 
-		//about label
+		//about label editing
 		about.setEditable(false);
 		about.setLineWrap(true);
 		about.setMargin(new Insets(10,10,0,5));
 		about.setWrapStyleWord(true);
-		about.setBackground(new Color(238,238,238));
-		about.setFont (new Font("",Font.PLAIN,20));
-		about.setText(" CodeRail is a Open Source Text Editor written in pure Java Language.  We created this repo just for practise purpose. If you also want to  practise  your java swing coding skill then, most welcome.");
-		about.append("This Project is created by members of BlareGroup a Developers Group. BlareGroup is a Group of Developer who create softwares and programs for indstry level or for practice purpose. ");
-		about.append("\n\n Developed By:-\n  Sura Singh Bisht (surajsinghbisht054@gmail.com)");
-		about.append("\n  Himanshu Sharma (himanshusharma2972@gmail.com)");				
-
+		about.setBackground(new Color(31, 35, 64));
+		about.setForeground(Color.WHITE);
+		about.setFont (new Font("",Font.ITALIC,17));
+		about.setText("CodeRail is a Open Source Text Editor. It is a Platform Independent Text Editor.");
+		about.append("\n\nCodeRail is created by BlareGroup, a Developers Group who create softwares and programs.");
+		about.append("\n\nCredit :-\n\nSuraj Singh Bisht (surajsinghbisht054@gmail.com)");
+		about.append("\n\nHimanshu Sharma (himanshusharma2972@gmail.com)");				
+		
 
 		//github 
-		github.setFont(new Font("",Font.BOLD,25));
 		github_link.addActionListener(this);
 		
 		//blaregroup
-		blareGroup.setFont(new Font("",Font.BOLD,25));
 		blaregroup_link.addActionListener(this);
 
-		//copyright
-		copyright.setFont(new Font("",Font.ITALIC,15));
-
-		head.setBounds(190,10,800,50);
-		about.setBounds(30,80,750,300);
-		github.setBounds(210,410,200,50);
-		blareGroup.setBounds(210,470,200,50);
-		github_link.setBounds(420,416,100,30);
-		blaregroup_link.setBounds(420,476,100,30);
-		copyright.setBounds(220,645,500,50);
+		//license
+		license_link.addActionListener(this);
 		
+		//copyright
+		copyright.setFont(new Font("",Font.ITALIC,12));
+		copyright.setForeground(Color.WHITE);
 
-		add(head);
-		add(about);
-		add(github);
-		add(blareGroup);
-		add(github_link);
-		add(blaregroup_link);
-		add(copyright);
+	
 
+
+
+		//setting position of components
+		head.setBounds(10,5,440,50);
+		about.setBounds(0,60,440,320);
+		license_link.setBounds(100,10,130,20);
+		github_link.setBounds(290,10,130,20);
+		blaregroup_link.setBounds(470,10,130,20);
+		copyright.setBounds(200,40,500,50);
+		logo.setBounds(20,70,200,200);
+		
+		//config main panel
+		mainpanel.setBackground(new Color(31, 35, 64));
+		mainpanel.setBounds(0,0,700,400);
+		mainpanel.setLayout(null);
+
+		//config left panel
+		leftpanel.setBackground(new Color(31, 35, 64));
+		leftpanel.setForeground(Color.WHITE);
+		leftpanel.setLayout(null);
+	 	leftpanel.setBounds(0,0,250,398);
+
+		//config right panel
+		rightpanel.setBackground(new Color(31, 35, 64));
+		rightpanel.setLayout(null);
+		rightpanel.setBounds(252,1,450,398);
+			
+		//config  bottom panel			
+		bottompanel.setBackground(new Color(21, 25, 54));
+		bottompanel.setBounds(0,400,700,80);
+		bottompanel.setLayout(null);
+
+		//adding panels to window
+		add(mainpanel);
+		add(bottompanel);
+
+		//adding component on main panel
+		mainpanel.add(leftpanel);
+		mainpanel.add(rightpanel);
+
+		//adding  component on left panel
+		leftpanel.add(logo);
+
+		//adding component on right panel
+		rightpanel.add(head);
+		rightpanel.add(about);
+
+		//adding component on bottom panel
+		bottompanel.add(license_link);
+		bottompanel.add(blaregroup_link);
+		bottompanel.add(github_link);
+		bottompanel.add(copyright);
+		
 		
 
 	}
