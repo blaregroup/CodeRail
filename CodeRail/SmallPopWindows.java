@@ -32,6 +32,7 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.regex.*;
+import java.net.URI;
 
 
 
@@ -54,6 +55,9 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 	private JButton button1;
 	private JButton button2;
 	private JTextArea textobj;
+
+	private JButton github_link;
+	private JButton blaregroup_link;
 
 
 	public SmallPopWindows(JFrame parent, JTextArea texto, int dialog_type_code){
@@ -95,8 +99,14 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		if (dialogtype==1) {
 			InitGUIReplace();
 
-		// Find Dialog Codes
+		
+		}
+		if(dialogtype==2){
+			//AboutDialogCode
+			InitGUIAbout();
+
 		}else{
+		// Find Dialog Codes
 			InitGUIFind();
 		}
 		InitGUI();
@@ -301,6 +311,28 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 				perform_replace_routine();
 			}
 		}
+		else if(e.getSource()==github_link)
+		{	//github_link
+			if (Desktop.isDesktopSupported()) 
+					{
+				      try {
+				        	Desktop.getDesktop().browse(new URI("http://github.com/blareGroup/CodeRail"));
+				      }
+				  	  catch (Exception m) {}
+				    } 
+		}
+		else if(e.getSource()==blaregroup_link)
+		{
+			//blaregroup_line
+			if (Desktop.isDesktopSupported()) 
+					{
+				      try {
+				        	Desktop.getDesktop().browse(new URI("http://blareGroup.com"));
+				      }
+				  	  catch (Exception m) {}
+				    }
+
+		}
 		else{
 			// Find Window Findall Button Clicked
 			if(dialogtype==0){
@@ -322,6 +354,10 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		setResizable(false);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
+		if(dialogtype==2)
+		{
+			setSize(800,700);
+		}
 
 	}
 	
@@ -397,6 +433,75 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		
 		// Panel Attach To main root
 		setLayout(new GridLayout(2,3));
+
+	}
+
+	private void InitGUIAbout(){
+
+		setTitle("About");
+		setLayout(null);
+	
+		//declaring useful variables
+		JLabel head=new JLabel("CODERAIL TEXT EDITOR");
+		JLabel github=new JLabel("Github:- ");
+		JLabel blareGroup= new JLabel("BlareGroup:- ");
+		JLabel developer= new JLabel("Developed By");
+		JLabel copyright= new JLabel("© 2019 BLARE GROUP(www.blaregroup.com)");
+		github_link= new JButton("Click me");
+		blaregroup_link = new JButton("Click me");
+
+		
+		JTextArea about=new JTextArea();
+		
+		
+
+		//heading
+		head.setFont(new Font("",Font.BOLD,30));
+
+
+
+		//about label
+		about.setEditable(false);
+		about.setLineWrap(true);
+		about.setMargin(new Insets(10,10,0,5));
+		about.setWrapStyleWord(true);
+		about.setBackground(new Color(238,238,238));
+		about.setFont (new Font("",Font.PLAIN,20));
+		about.setText(" CodeRail is a Open Source Text Editor written in pure Java Language.  We created this repo just for practise purpose. If you also want to  practise  your java swing coding skill then, most welcome.");
+		about.append("This Project is created by members of BlareGroup a Developers Group. BlareGroup is a Group of Developer who create softwares and programs for indstry level or for practice purpose. ");
+		about.append("\n\n Developed By:-\n  Sura Singh Bisht (surajsinghbisht054@gmail.com)");
+		about.append("\n  Himanshu Sharma (himanshusharma2972@gmail.com)");				
+
+
+		//github 
+		github.setFont(new Font("",Font.BOLD,25));
+		github_link.addActionListener(this);
+		
+		//blaregroup
+		blareGroup.setFont(new Font("",Font.BOLD,25));
+		blaregroup_link.addActionListener(this);
+
+		//copyright
+		copyright.setFont(new Font("",Font.ITALIC,15));
+
+		head.setBounds(190,10,800,50);
+		about.setBounds(30,80,750,300);
+		github.setBounds(210,410,200,50);
+		blareGroup.setBounds(210,470,200,50);
+		github_link.setBounds(420,416,100,30);
+		blaregroup_link.setBounds(420,476,100,30);
+		copyright.setBounds(220,645,500,50);
+		
+
+		add(head);
+		add(about);
+		add(github);
+		add(blareGroup);
+		add(github_link);
+		add(blaregroup_link);
+		add(copyright);
+
+		
 
 	}
 

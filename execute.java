@@ -6,7 +6,7 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.UIManager;
 import CodeRail.*;
-
+import java.net.URI;
 
 
 /*
@@ -56,7 +56,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 	private static final int editor_height = 400;
 	private static final boolean debug = true;
 	private static boolean editing = false;
-	
+		
 
 
 	// CodeRail Module Objects
@@ -744,10 +744,18 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 				System.out.println("[-] help topic");
 
 			}
+				if (Desktop.isDesktopSupported()) 
+				{
+			      try {
+			        	Desktop.getDesktop().browse(new URI("http://www.blaregroup.com"));
+			      }
+			  	  catch (Exception m) {}
+			    } 
 		}
 		else if (e.getSource()==menu.menu_help_about){
 			if (debug) {
 				System.out.println("[-] about");
+				PopUpDialog = new SmallPopWindows(this, obj, 2);
 
 			}
 		}
