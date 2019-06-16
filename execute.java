@@ -52,22 +52,22 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 	private static final String window_name = "CodeRail Text Editor";
 	private static final int window_width = 1000;
 	private static final int window_height = 700;
-	private static final int editor_width = 150;
-	private static final int editor_height = 100;
+	private static final int editor_width = 0;
+	private static final int editor_height = 0;
 	private static final boolean debug = false;
 	private static boolean editing = false;
 		
 
 
 	// CodeRail Module Objects
-	private AddMenuBar menu;		// Menu Bar Module
-	private Editor obj;				// Editor Module
-	private UndoManager manager; 	// Undo Manager
-	private FileManager FileObj;	// FileManager Module Object
-	private JScrollPane scrolltext;	// Scrollbar Pane
+	private AddMenuBar menu;        // Menu Bar Module
+	private Editor obj;             // Editor Module
+	private UndoManager manager;    // Undo Manager
+	private FileManager FileObj;    // FileManager Module Object
+	private JScrollPane scrolltext; // Scrollbar Pane
 	private SmallPopWindows PopUpDialog; // pop up Dialog Box Windows
 	private StatusBar statusbarObj; // Status Bar
-	private LineNumberColumn clm;	// Line Numbers
+	private LineNumberColumn clm;   // Line Numbers
 	private JPanel panel;
 
 	// constructor
@@ -130,10 +130,10 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 		/* Window Configuration  */  
 		setSize(window_width, window_height); // Set Size
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // Close Operation
-		add(menu);								// Menu
-		add(scrolltext); 						// Scroll Text
-		add(statusbarObj,BorderLayout.SOUTH); 	// Status Bar
-		setJMenuBar(menu);  					// Menu
+		add(menu);                              // Menu
+		add(scrolltext);                        // Scroll Text
+		add(statusbarObj,BorderLayout.SOUTH);   // Status Bar
+		setJMenuBar(menu);                      // Menu
 		setVisible(true);
 		setFocusable(true);
 		clm.update_line_number_configurations();
@@ -153,37 +153,37 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 
 	}
 	@Override
-    public void caretUpdate(CaretEvent caretEvent) {
-    	try{
-	    	int offset = caretEvent.getMark();
-	    	int line = obj.getLineOfOffset(offset);
-	    	statusbarObj.LineStatusUpdate(line+1, offset - obj.getLineStartOffset(line));
-    	}catch(Exception error){
-    		System.out.println(error);
+	public void caretUpdate(CaretEvent caretEvent) {
+		try{
+			int offset = caretEvent.getMark();
+			int line = obj.getLineOfOffset(offset);
+			statusbarObj.LineStatusUpdate(line+1, offset - obj.getLineStartOffset(line));
+		}catch(Exception error){
+			System.out.println(error);
 
-    	}
-        
-    }
+		}
+		
+	}
 
 
-    public void changedUpdate(DocumentEvent documentEvent) {
-    	// System.out.println("Document Change Update");
-    	clm.update_line_number_configurations();
-    	editing = true;
-        };
+	public void changedUpdate(DocumentEvent documentEvent) {
+		// System.out.println("Document Change Update");
+		clm.update_line_number_configurations();
+		editing = true;
+		};
 
-    public void removeUpdate(DocumentEvent documentEvent) {
-    	// System.out.println("remove Update");
-    	clm.UpdateLineNumbers();
-    	statusbarObj.UpdateStatus();
-    	editing = true;
-        };
+	public void removeUpdate(DocumentEvent documentEvent) {
+		// System.out.println("remove Update");
+		clm.UpdateLineNumbers();
+		statusbarObj.UpdateStatus();
+		editing = true;
+		};
 
-    public void insertUpdate(DocumentEvent documentEvent) {
-    	clm.UpdateLineNumbers();
-    	statusbarObj.UpdateStatus();
-    	editing = true;
-        };
+	public void insertUpdate(DocumentEvent documentEvent) {
+		clm.UpdateLineNumbers();
+		statusbarObj.UpdateStatus();
+		editing = true;
+		};
 
 	public void registerListener(){
 		/*
@@ -274,7 +274,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 				FileObj.SaveFile();
 				System.exit(0);
 									
-			// Don't Save Changes But Close	
+			// Don't Save Changes But Close 
 			}else if (ask==JOptionPane.NO_OPTION) {
 				System.exit(0);
 
@@ -328,7 +328,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			}
 			else{ 
 				//statusbarObj.setVisible(false);
-			}	
+			}   
 		}
 		
 	}
@@ -798,11 +798,11 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			}
 				if (Desktop.isDesktopSupported()) 
 				{
-			      try {
-			        	Desktop.getDesktop().browse(new URI("http://www.blaregroup.com"));
-			      }
-			  	  catch (Exception m) {}
-			    } 
+				  try {
+						Desktop.getDesktop().browse(new URI("http://www.blaregroup.com"));
+				  }
+				  catch (Exception m) {}
+				} 
 		}
 		else if (e.getSource()==menu.menu_help_about){
 			if (debug) {

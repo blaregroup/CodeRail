@@ -9,7 +9,6 @@ package CodeRail;
 			Suraj Singh Bisht
 			surajsinghbisht054@gmail.com
 
-
 			himanshu sharma
 
 Related Doc Urls:
@@ -134,7 +133,7 @@ public class AddMenuBar extends JMenuBar {
 		menu_edit_redo 		= new JMenuItem("Redo");
 		menu_edit_cut 		= new JMenuItem("Cut");
 		menu_edit_copy 		= new JMenuItem("Copy");
-	 	menu_edit_paste 	= new JMenuItem("Paste");
+		menu_edit_paste 	= new JMenuItem("Paste");
 		menu_edit_delete 	= new JMenuItem("Delete");
 		menu_edit_selectall = new JMenuItem("Select All");
 		menu_edit_find 		= new JMenuItem("Find");
@@ -142,29 +141,29 @@ public class AddMenuBar extends JMenuBar {
 		menu_edit_goto 		= new JMenuItem("Goto");
 
 		// menu view
-	 	menu_view_theme = new JMenu("Theme");
-	 	theme_0 = new JMenuItem("Default");
-	 	theme_a = new JMenuItem("Dark");
-	 	theme_b = new JMenuItem("Light");
-	 	theme_c = new JMenuItem("Cool");
-	 	theme_d = new JMenuItem("Vim");
-	 	theme_e = new JMenuItem("Ocean");
-	 	theme_f = new JMenuItem("Arc");
-	 	theme_g = new JMenuItem("Pro");
-	 	theme_h = new JMenuItem("Mac");
+		menu_view_theme = new JMenu("Theme");
+		theme_0 = new JMenuItem("Default");
+		theme_a = new JMenuItem("Dark");
+		theme_b = new JMenuItem("Light");
+		theme_c = new JMenuItem("Cool");
+		theme_d = new JMenuItem("Vim");
+		theme_e = new JMenuItem("Ocean");
+		theme_f = new JMenuItem("Arc");
+		theme_g = new JMenuItem("Pro");
+		theme_h = new JMenuItem("Mac");
 
-	 	// Sub menu option
-	 	menu_view_language  = new JMenu("Language");
-	 	language_plain 		= new JMenuItem("Plain");
-	 	language_c          = new JMenuItem("C");
-	 	language_cplus      = new JMenuItem("C++");
-	 	language_csharp     = new JMenuItem("CSharp");
-	 	language_css        = new JMenuItem("CSS");
-	 	language_html       = new JMenuItem("HTML");
-	 	language_java       = new JMenuItem("JAVA");
-	 	language_javascript = new JMenuItem("JAVASCRIPT");
-	 	language_php        = new JMenuItem("PHP");
-	 	language_python     = new JMenuItem("PYTHON");
+		// Sub menu option
+		menu_view_language  = new JMenu("Language");
+		language_plain 		= new JMenuItem("Plain");
+		language_c          = new JMenuItem("C");
+		language_cplus      = new JMenuItem("C++");
+		language_csharp     = new JMenuItem("CSharp");
+		language_css        = new JMenuItem("CSS");
+		language_html       = new JMenuItem("HTML");
+		language_java       = new JMenuItem("JAVA");
+		language_javascript = new JMenuItem("JAVASCRIPT");
+		language_php        = new JMenuItem("PHP");
+		language_python     = new JMenuItem("PYTHON");
 		menu_view_statusbar = new JCheckBoxMenuItem("Status Bar", true);
 		menu_view_linenumber= new JCheckBoxMenuItem("Line Number", true);
 		menu_view_cursorline= new JCheckBoxMenuItem("Cursor Line", true);
@@ -199,7 +198,7 @@ public class AddMenuBar extends JMenuBar {
 		menu_edit_cut.setAccelerator(KeyStroke.getKeyStroke('X',ActionEvent.CTRL_MASK));
 		menu_edit_delete.setAccelerator(KeyStroke.getKeyStroke('X', ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
 		menu_edit_copy.setAccelerator(KeyStroke.getKeyStroke('C',ActionEvent.CTRL_MASK));
-	 	menu_edit_paste.setAccelerator(KeyStroke.getKeyStroke('V',ActionEvent.CTRL_MASK));
+		menu_edit_paste.setAccelerator(KeyStroke.getKeyStroke('V',ActionEvent.CTRL_MASK));
 		menu_edit_selectall.setAccelerator(KeyStroke.getKeyStroke('A',ActionEvent.CTRL_MASK));
 		menu_edit_find.setAccelerator(KeyStroke.getKeyStroke('F',ActionEvent.CTRL_MASK));
 		menu_edit_replace.setAccelerator(KeyStroke.getKeyStroke('R',ActionEvent.CTRL_MASK));
@@ -230,8 +229,8 @@ public class AddMenuBar extends JMenuBar {
 		menu_edit.addSeparator();
 		menu_edit.add(menu_edit_cut);
 		menu_edit.add(menu_edit_copy);
-	 	menu_edit.add(menu_edit_paste);
-	 	menu_edit.addSeparator();
+		menu_edit.add(menu_edit_paste);
+		menu_edit.addSeparator();
 		menu_edit.add(menu_edit_delete);
 		menu_edit.add(menu_edit_goto);
 		menu_edit.add(menu_edit_selectall);
@@ -241,32 +240,32 @@ public class AddMenuBar extends JMenuBar {
 		menu_edit.add(menu_edit_replace);
 		
 		// menu view
-	 	menu_view_theme.add(theme_0);
-	 	menu_view_theme.add(theme_a);
-	 	menu_view_theme.add(theme_b);
-	 	menu_view_theme.add(theme_c);
-	 	menu_view_theme.add(theme_d);
-	 	menu_view_theme.add(theme_e);
-	 	menu_view_theme.add(theme_f);
-	 	menu_view_theme.add(theme_g);
-	 	menu_view_theme.add(theme_h);
-	 	menu_view.add(menu_view_theme);
-	 	menu_view.addSeparator();
-	 	menu_view_language.add(language_plain);
-	 	menu_view_language.add(language_c);
-	 	menu_view_language.add(language_cplus);
-	 	menu_view_language.add(language_csharp);
-	 	menu_view_language.add(language_css);
-	 	menu_view_language.add(language_html);
-	 	menu_view_language.add(language_java);
-	 	menu_view_language.add(language_javascript);
-	 	menu_view_language.add(language_php);
-	 	menu_view_language.add(language_python);
-	 	menu_view.add(menu_view_language);
-	 	menu_view.addSeparator();
-	 	menu_view.add(menu_view_statusbar);
-	 	menu_view.add(menu_view_linenumber);
-	 	menu_view.add(menu_view_cursorline);
+		menu_view_theme.add(theme_0);
+		menu_view_theme.add(theme_a);
+		menu_view_theme.add(theme_b);
+		menu_view_theme.add(theme_c);
+		menu_view_theme.add(theme_d);
+		menu_view_theme.add(theme_e);
+		menu_view_theme.add(theme_f);
+		menu_view_theme.add(theme_g);
+		menu_view_theme.add(theme_h);
+		menu_view.add(menu_view_theme);
+		menu_view.addSeparator();
+		menu_view_language.add(language_plain);
+		menu_view_language.add(language_c);
+		menu_view_language.add(language_cplus);
+		menu_view_language.add(language_csharp);
+		menu_view_language.add(language_css);
+		menu_view_language.add(language_html);
+		menu_view_language.add(language_java);
+		menu_view_language.add(language_javascript);
+		menu_view_language.add(language_php);
+		menu_view_language.add(language_python);
+		menu_view.add(menu_view_language);
+		menu_view.addSeparator();
+		menu_view.add(menu_view_statusbar);
+		menu_view.add(menu_view_linenumber);
+		menu_view.add(menu_view_cursorline);
 
 		// menu font
 		menu_font.add(menu_font_wordwrap);

@@ -121,6 +121,7 @@ public class StatusBar extends JPanel{
 	{
 		TabSize.setForeground(new Color(r,g,b));
 		TotalLine.setForeground(new Color(r,g,b));
+		CursorPosition.setForeground(new Color(r,g,b));
 	}
 }
 
