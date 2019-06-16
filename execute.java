@@ -506,6 +506,13 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 				System.out.println("[-] goto");
 
 			}
+			try{
+				int l = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter Line Number"));
+				System.out.println(l);
+				obj.setCaretPosition(obj.getLineStartOffset(l)-1);
+			}catch(Exception error){
+				System.out.println(error);
+			}
 		}
 
 		// Default
@@ -799,10 +806,9 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 		}
 		else if (e.getSource()==menu.menu_help_about){
 			if (debug) {
-				System.out.println("[-] about");
-				PopUpDialog = new SmallPopWindows(this, obj, 2);
-
+				System.out.println("[-] About");
 			}
+			PopUpDialog = new SmallPopWindows(this, obj, 2);
 		}
 	
 

@@ -82,6 +82,7 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 			Use dialog_type_code:
 				0 = Find Dialog [Default]
 				1 = Replace dialog
+				2 = About Dialog
 		*/
 
 		addWindowListener(new WindowAdapter()
@@ -101,14 +102,16 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 
 		
 		}
-		if(dialogtype==2){
+		else if(dialogtype==2){
 			//AboutDialogCode
+			//System.out.println("YUP");
 			InitGUIAbout();
 
 		}else{
 		// Find Dialog Codes
 			InitGUIFind();
 		}
+
 		InitGUI();
 	}
 
