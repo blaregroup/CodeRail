@@ -39,7 +39,7 @@ import java.net.URI;
 
 
 */
-class CombinedControls extends JFrame implements ActionListener,ItemListener, DocumentListener {
+class CombinedControls extends JFrame implements ActionListener,ItemListener, DocumentListener, CaretListener {
 	/*
 
 		JFrame : Class To Create Main Window Object
@@ -52,9 +52,9 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 	private static final String window_name = "CodeRail Text Editor";
 	private static final int window_width = 1000;
 	private static final int window_height = 700;
-	private static final int editor_width = 900;
-	private static final int editor_height = 400;
-	private static final boolean debug = true;
+	private static final int editor_width = 150;
+	private static final int editor_height = 100;
+	private static final boolean debug = false;
 	private static boolean editing = false;
 		
 
@@ -100,9 +100,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 		panel.add(clm, BorderLayout.WEST);
 		panel.add(obj, BorderLayout.EAST);
 		panel.setVisible(true);
-		//JScrollPane scrolltext = new JScrollPane(obj);
 		JScrollPane scrolltext = new JScrollPane(panel); 
-		//scrolltext.setRowHeaderView(clm);
 		obj.getDocument().addDocumentListener(this);
 		
 
@@ -154,6 +152,20 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 		registerListener();
 
 	}
+	@Override
+    public void caretUpdate(CaretEvent caretEvent) {
+    	try{
+	    	int offset = caretEvent.getMark();
+	    	int line = obj.getLineOfOffset(offset);
+	    	statusbarObj.LineStatusUpdate(line+1, offset - obj.getLineStartOffset(line));
+    	}catch(Exception error){
+    		System.out.println(error);
+
+    	}
+        
+    }
+
+
     public void changedUpdate(DocumentEvent documentEvent) {
     	// System.out.println("Document Change Update");
     	clm.update_line_number_configurations();
@@ -163,14 +175,13 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
     public void removeUpdate(DocumentEvent documentEvent) {
     	// System.out.println("remove Update");
     	clm.UpdateLineNumbers();
-    	statusbarObj.TotalLine();
+    	statusbarObj.UpdateStatus();
     	editing = true;
         };
 
     public void insertUpdate(DocumentEvent documentEvent) {
-    	System.out.println("rem");
     	clm.UpdateLineNumbers();
-    	statusbarObj.TotalLine();
+    	statusbarObj.UpdateStatus();
     	editing = true;
         };
 
@@ -224,8 +235,8 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 		menu.language_php.addActionListener(this);
 		menu.language_python.addActionListener(this);
 		menu.menu_view_statusbar.addItemListener(this);
-		menu.menu_view_cursorline.addActionListener(this);
-		menu.menu_view_linenumber.addActionListener(this);
+		menu.menu_view_cursorline.addItemListener(this);
+		menu.menu_view_linenumber.addItemListener(this);
 
 		// menu font
 		menu.menu_font_wordwrap.addActionListener(this);
@@ -244,6 +255,8 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 				exit();
 			}
 		});
+
+		obj.addCaretListener(this);
 		
 	}
 
@@ -280,12 +293,44 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 	//adding action to checkbox menu like status bar,linenumber,cursor
 	public void itemStateChanged(ItemEvent e) 
 	{
-		System.out.println("status bar menu item changed");
-		if(e.getStateChange()==1)
-		{
-			add(statusbarObj);revalidate();
+		// for status bar state change
+		if (e.getSource()==menu.menu_view_statusbar) {
+			System.out.println("[+] Status Bar State Changed");
+
+			if(e.getStateChange()==1)
+			{
+				statusbarObj.setVisible(true);
+			}
+			else{ 
+				statusbarObj.setVisible(false);
+			}
 		}
-		else{ remove(statusbarObj); revalidate();}
+		// for line number state change
+		else if (e.getSource()==menu.menu_view_linenumber) {
+			System.out.println("[+] Line Number State Changed");
+
+			if(e.getStateChange()==1)
+			{
+				clm.setVisible(true);
+			}
+			else{ 
+				clm.setVisible(false);
+			}
+		}
+
+		// for cursor highlight
+		else if (e.getSource()==menu.menu_view_cursorline){
+			System.out.println("[+] Cursor Line State Changed");
+
+			if(e.getStateChange()==1)
+			{
+				//statusbarObj.setVisible(true);
+			}
+			else{ 
+				//statusbarObj.setVisible(false);
+			}	
+		}
+		
 	}
 	
 	public void actionPerformed(ActionEvent e){

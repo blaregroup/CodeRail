@@ -36,7 +36,7 @@ public class LineNumberColumn extends JTextArea {
     public void UpdateLineNumbers() {
         int n = this.txtarea.getLineCount();
         int n2 = 0;
-        System.out.println("[+] Rows Update " + n);
+        // System.out.println("[+] Rows Update " + n);
         if (this.numberline != n) {
             if (this.numberline > n) {
                 n2 = this.numberline - n;
@@ -90,7 +90,5 @@ public class LineNumberColumn extends JTextArea {
     	root.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	root.setVisible(true);
     	root.setFocusable(true);
-
-
     }
 }

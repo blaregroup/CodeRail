@@ -55,24 +55,14 @@ class RowHighlighter implements CaretListener {
 
 */
 
-// status bar
+/* Status bar */
 public class StatusBar extends JPanel{
 	
 	//variables to store some useful data
 	private Editor editor;
-	private JLabel TabSize   = new JLabel();
-	private JLabel TotalLine = new JLabel();
-	//private JLabel Cursor    = new JLabel();
-	private JLabel CursorPosition = new JLabel();
-	private	Caret caret;
-	private Point p;
-	private double line;
-	private double column;
-	private int tabsize;
-	private int totalline;
-	
-		
-		
+	private JLabel TabSize;
+	private JLabel TotalLine;
+	private JLabel CursorPosition;
 
 	// Constructor
 	public StatusBar(Editor e){
@@ -84,69 +74,45 @@ public class StatusBar extends JPanel{
 		setVisible(true);
 		setFocusable(true);
 		setBackground(new Color(226, 230, 231));
-		setLayout(new FlowLayout(FlowLayout.RIGHT,10,5));
-		caret=editor.getCaret();
+		setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
-		
-
-		
-		/*
-			not working 
-			ChangeListener listener = new ChangeListener() {
-		  public void stateChanged(ChangeEvent caretEvent) {
-		   	    
-		   	   // caret=editor.getCaret();
-		   	    p=caret.getMagicCaretPosition();
-		    try{
-		    	line=p.getX();
-		    	column=p.getY();
-		    	System.out.println("a="+line+"b="+column);
-		    	CursorPosition();
-				}
-				catch(Exception m){}
-		  }
-		};
-		caret.addChangeListener( listener);*/
-
-		//Calling  methods
+		// Calling  methods
 		TabSize();
 		TotalLine();
 		CursorPosition();
+		UpdateStatus();
 	}
 
 	
 	//method to display tab size
 	public void TabSize()
 	{	
-		tabsize=editor.getTabSize();
-		TabSize.setText("Tab Size: "+tabsize);
-		TabSize.setBounds(2,10,10,30);
+		TabSize   = new JLabel();
 		add(TabSize);
-
 	}
 
 	//method to display total number of line
 	public void TotalLine()
 	{
-
-		totalline=editor.getLineCount();
-		TotalLine.setText("Total Lines: "+totalline);
+		TotalLine = new JLabel();
 		add(TotalLine);
+	}
+
+
+	public void UpdateStatus(){
+		TotalLine.setText(" Total Lines : "+editor.getLineCount());
+		TabSize.setText(" Tab Size : "+editor.getTabSize());
+	}
+
+	public void LineStatusUpdate(int line, int column){
+		CursorPosition.setText(String.format("  Line : %d | Column : %d ", line, column));
 	}
 
 	public void CursorPosition()
 	{	
-		p=caret.getMagicCaretPosition();
-		try{
-		line=p.getX();
-		column=p.getY();
-		
-		}
-		catch(Exception k)
-		{}
-		
-		System.out.println("x="+line+"y="+column);
-		CursorPosition.setText("line:"+(int)line+", column:"+(int)column);
+
+		CursorPosition = new JLabel();
+		CursorPosition.setText(String.format("  Line : %d | Column : %d", 0,0));
 		add(CursorPosition);
 
 	}

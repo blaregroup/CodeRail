@@ -70,6 +70,7 @@ public class FileManager{
 			//System.out.print("-End");
 			editor.append(lines);
 		}*/
+		
 		/* https://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html   */
 		editor.read(input_pipe,null);   //for reading file
 		editor.requestFocus();   		//for getting focus on textarea
