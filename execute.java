@@ -98,7 +98,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		panel.add(clm, BorderLayout.WEST);
-		panel.add(obj, BorderLayout.EAST);
+		panel.add(obj, BorderLayout.CENTER);
 		panel.setVisible(true);
 		JScrollPane scrolltext = new JScrollPane(panel); 
 		obj.getDocument().addDocumentListener(this);
