@@ -803,7 +803,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 				if (Desktop.isDesktopSupported()) 
 				{
 				  try {
-						Desktop.getDesktop().browse(new URI("http://www.blaregroup.com"));
+						Desktop.getDesktop().browse(new URI("https://www.blaregroup.com/coderail-text-editor/"));
 				  }
 				  catch (Exception m) {}
 				} 

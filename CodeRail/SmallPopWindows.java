@@ -336,7 +336,7 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 			if (Desktop.isDesktopSupported()) 
 					{
 				      try {
-				        	Desktop.getDesktop().browse(new URI("http://blareGroup.com"));
+				        	Desktop.getDesktop().browse(new URI("https://www.blaregroup.com/coderail-text-editor/"));
 				      }
 				  	  catch (Exception m) {}
 				    }
