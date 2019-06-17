@@ -145,7 +145,7 @@ public class AddMenuBar extends JMenuBar {
 		theme_0 = new JMenuItem("Default");
 		theme_a = new JMenuItem("Dark");
 		theme_b = new JMenuItem("Light");
-		theme_c = new JMenuItem("Cool");
+		theme_c = new JMenuItem("Pico");
 		theme_d = new JMenuItem("Vim");
 		theme_e = new JMenuItem("Ocean");
 		theme_f = new JMenuItem("Arc");
@@ -302,7 +302,7 @@ public class AddMenuBar extends JMenuBar {
 		theme_a.setForeground(new Color(236, 240, 241));
 		theme_b.setBackground(new Color(236, 240, 241));
 		theme_b.setForeground(new Color(34, 47, 62));
-		theme_c.setBackground(new Color(9, 132, 227));
+		theme_c.setBackground(new Color(25, 42, 86));
 		theme_c.setForeground(new Color(236, 240, 241));
 		theme_d.setBackground(new Color(111, 30, 81));
 		theme_d.setForeground(new Color(247, 241, 227));
@@ -311,7 +311,7 @@ public class AddMenuBar extends JMenuBar {
 		theme_f.setBackground(new Color(72, 84, 96));
 		theme_f.setForeground(new Color(248, 239, 186));
 		theme_g.setBackground(new Color(44, 58, 71));
-		theme_g.setForeground(new Color(130, 88, 159));
+		theme_g.setForeground(new Color(255, 121, 63));
 		theme_h.setBackground(new Color(236, 240, 241));
 		theme_h.setForeground(new Color(44, 62, 80));
 

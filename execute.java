@@ -108,6 +108,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 		
 		/* set font for JTextArea Object */
 		Font font_family = new Font("Courier", Font.BOLD,16);
+		//Font font_family = new Font("Garuda", Font.BOLD,16);
 		obj.setFont(font_family);
 		
 
@@ -267,7 +268,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 		if(editing){
 
 			int ask = JOptionPane.showConfirmDialog(null, 
-					"Are you want to Save The Changes");
+					"Do you want to Save The Changes");
 
 			// Yes, Save Changes and Close
 			if (ask==JOptionPane.YES_OPTION) {
@@ -386,7 +387,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			}
 			FileObj.OpenFileChooser();
 			clm.UpdateLineNumbers();
-			statusbarObj.TotalLine();
+			statusbarObj.UpdateStatus();
 
 		}
 		
@@ -568,13 +569,13 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 				System.out.println("[-] theme selected");
 
 			}
-			obj.setBackground(new Color(9, 132, 227));
+			obj.setBackground(new Color(25, 42, 86));
 			obj.setForeground(new Color(236, 240, 241));
 			menu.setBackground(new Color(44, 62, 80));
 			obj.setCaretColor(new Color(236,240,241));
-			clm.setBackground(new Color(1, 122, 217));
+			clm.setBackground(new Color(15,32,76));
 			clm.setForeground(new Color(236, 240, 241));
-			statusbarObj.setBackground(new Color(1, 122, 217));
+			statusbarObj.setBackground(new Color(15, 32, 86));
 			statusbarObj.setcomponentcolor(236,240,241);
 		}
 		// Vim
@@ -630,13 +631,13 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 
 			}
 			obj.setBackground(new Color(44, 58, 71));
-			obj.setForeground(new Color(130, 88, 159));
+			obj.setForeground(new Color(255, 121, 63));
 			menu.setBackground(new Color(24, 44, 97));
 			obj.setCaretColor(new Color(130, 88, 159));
 			clm.setBackground(new Color(34, 48, 61));
-			clm.setForeground(new Color(130, 88, 159));
+			clm.setForeground(new Color(255, 121, 63));
 			statusbarObj.setBackground(new Color(34, 48, 61));
-			statusbarObj.setcomponentcolor(130, 88, 159);
+			statusbarObj.setcomponentcolor(255, 121, 63);
 		}
 		// MAC
 		else if (e.getSource()==menu.theme_h){
@@ -765,6 +766,9 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 				System.out.println("[-] view wordwrap");
 
 			}
+
+
+			PopUpDialog = new SmallPopWindows(this, obj, 3);
 		}
 		else if (e.getSource()==menu.menu_font_font){
 			if (debug) {

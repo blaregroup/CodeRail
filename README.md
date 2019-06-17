@@ -18,7 +18,7 @@ $$    $$/ $$    $$/ $$    $$ |$$       |$$ |  $$ |$$    $$ |$$ |$$ |
 ```
 
 ### Introduction
-This is A Simple Baby Project Started Few Weeks ago By Blare Group Just for Practise Purpose. We Tried To Make A Very Simple But Cute Looking Editor That Will Work Like A Charm And We Believe We Successfully Created It. If You Also Want to Polish Your Skill. Fork It And Do it.
+This is A Simple Baby Project Started Few Weeks ago By Blare Group Just for Practice Purpose. We Tried To Make A Very Simple But Cute Looking Editor That Will Work Like A Charm And We Believe We Successfully Created It. If You Also Want to Polish Your Skill. Fork It And Do it.
 
 ![BlareGroup Logo](docs/img/cover_photo.png "BlareGroup")
 

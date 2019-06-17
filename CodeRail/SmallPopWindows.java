@@ -108,7 +108,12 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 			//System.out.println("YUP");
 			InitGUIAbout();
 
-		}else{
+		}
+		else if(dialogtype==3){
+			//fontwrap dialog
+			InitWordWrap();
+		}
+		else{
 		// Find Dialog Codes
 			InitGUIFind();
 		}
@@ -469,7 +474,7 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		JLabel head=new JLabel("<html><b>CodeRail</b> Text Editor</html>");
 		JTextArea about=new JTextArea();
 		JLabel copyright= new JLabel("© 2019 BLARE GROUP(www.blaregroup.com)");
-		Icon img = new ImageIcon(getClass().getResource("logo.jpg")); 
+		Icon img = new ImageIcon(getClass().getResource("logo.png")); 
 		JLabel logo = new JLabel(img);
 		
 		//adding button
@@ -525,7 +530,7 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		github_link.setBounds(290,10,130,20);
 		blaregroup_link.setBounds(470,10,130,20);
 		copyright.setBounds(200,40,500,50);
-		logo.setBounds(20,70,200,200);
+		logo.setBounds(20,85,220,200);
 		
 		//config main panel
 		mainpanel.setBackground(new Color(31, 35, 64));
@@ -571,6 +576,12 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		
 		
 
+	}
+
+	private void InitWordWrap()
+	{
+		setTitle("Choose Font");
+		setLayout(null);
 	}
 
 		public static void main(String args[]){
