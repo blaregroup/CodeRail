@@ -383,7 +383,7 @@ public class SmallPopWindows extends JDialog implements ActionListener, ListSele
 			if (Desktop.isDesktopSupported()) 
 					{
 				      try {
-				        	Desktop.getDesktop().browse(new URI("https://github.com/blaregroup/CodeRail/blob/master/LICENSE"));
+				        	Desktop.getDesktop().browse(new URI("https://github.com/blaregroup/CodeRail/releases"));
 				      }
 				  	  catch (Exception m) {}
 				    }
