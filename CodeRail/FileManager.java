@@ -100,7 +100,12 @@ public class FileManager{
 		SaveFile();
 		infile = temp;
 	}
-
+	public void NewFile()
+	{
+		editor.setText("");
+	
+		infile=null;
+	}
 	// Check its New File Or Old One And Then Save It
 	public void SaveFile(){
 		// if File Object Avaialble

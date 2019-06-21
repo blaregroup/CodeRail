@@ -50,6 +50,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 
 	*/
 	private static final String window_name = "CodeRail Text Editor";
+	private static  String title= "Untitled";
 	private static final int window_width = 1000;
 	private static final int window_height = 700;
 	private static final int editor_width = 0;
@@ -80,7 +81,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			[https://docs.oracle.com/javase/7/docs/api/javax/swing/JFrame.html] 
 
 		*/
-		super(window_name);
+		super(title+" - "+window_name);
 
 
 		/* 
@@ -111,7 +112,6 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 		//Font font_family = new Font("Garuda", Font.BOLD,16);
 		obj.setFont(font_family);
 		
-
 		/* Undo manager to track change and undo changes */
 		manager = new UndoManager();
 		obj.getDocument().addUndoableEditListener(manager);
@@ -125,8 +125,8 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 
 		/* Status bar */
 		statusbarObj = new StatusBar(obj);
+		 
 		
-
 
 		/* Window Configuration  */  
 		setSize(window_width, window_height); // Set Size
@@ -377,7 +377,10 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 				System.out.println("[-] new file");
 
 			}
-			FileObj.SaveFile();
+			/*FileObj.SaveFile();*/
+			title="Untitled";
+			FileObj.NewFile();
+			setTitle(title+" -"+window_name);
 		}
 		
 		else if (e.getSource()==menu.menu_file_open){
@@ -388,7 +391,8 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			FileObj.OpenFileChooser();
 			clm.UpdateLineNumbers();
 			statusbarObj.UpdateStatus();
-
+			title=FileObj.Path;
+			setTitle(title+" -"+window_name);
 		}
 		
 		else if (e.getSource()==menu.menu_file_save){
@@ -397,6 +401,8 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 
 			}
 			FileObj.SaveFile();
+			title=FileObj.Path;
+			setTitle(title+" -"+window_name);
 
 		}
 		
@@ -406,6 +412,8 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 
 			}
 			FileObj.SaveAsFile();
+			title=FileObj.Path;
+			setTitle(title+" -"+window_name);
 		}
 		
 		else if (e.getSource()==menu.menu_file_print){
@@ -489,7 +497,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 				System.out.println("[-] find");
 				
 			}
-			PopUpDialog = new SmallPopWindows(this, obj, 0);
+			PopUpDialog = new SmallPopWindows(this, obj, clm, 0);
 			
 		}
 		
@@ -498,7 +506,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 				System.out.println("[-] replace");
 
 			}
-			PopUpDialog = new SmallPopWindows(this, obj, 1);
+			PopUpDialog = new SmallPopWindows(this, obj, clm, 1);
 		}
 		
 		
@@ -520,6 +528,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 		else if (e.getSource()==menu.theme_0){
 			if (debug) {
 				System.out.println("[-] theme selected");
+				
 
 			}
 
@@ -768,7 +777,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			}
 
 
-			PopUpDialog = new SmallPopWindows(this, obj, 3);
+			PopUpDialog = new SmallPopWindows(this, obj,clm,3);
 		}
 		else if (e.getSource()==menu.menu_font_font){
 			if (debug) {
@@ -812,7 +821,7 @@ class CombinedControls extends JFrame implements ActionListener,ItemListener, Do
 			if (debug) {
 				System.out.println("[-] About");
 			}
-			PopUpDialog = new SmallPopWindows(this, obj, 2);
+			PopUpDialog = new SmallPopWindows(this, obj,clm, 2);
 		}
 	
 
@@ -827,7 +836,7 @@ class execute{
 	public static void main(String[] args){
 		CombinedControls obj = new CombinedControls();
 		System.out.println("Starting CodeRail...");
-
+		
 	}
 
 }

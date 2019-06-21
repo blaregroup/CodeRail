@@ -27,7 +27,7 @@ public class LineNumberColumn extends JTextArea {
     private int numberline = 0;
 
     public LineNumberColumn(Editor editor) {
-        super(editor.getLineCount(), 4);
+        super(editor.getLineCount(), 3);
         this.txtarea = editor;
         this.setVisible(true);
         this.setFocusable(true);

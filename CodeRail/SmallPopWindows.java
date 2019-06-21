@@ -37,9 +37,10 @@ import java.net.URI;
 
 
 // Class To Handle Many Pop Window Functionalities
-public class SmallPopWindows extends JDialog implements ActionListener{
+public class SmallPopWindows extends JDialog implements ActionListener, ListSelectionListener{
 
 	// Get in in reverse
+	private Editor editor;
 	public int dialogtype; 			// Dialog Type
 	private Pattern pattern;		// Pattern Object 
 	private Matcher matcher;		// Matcher Object
@@ -55,15 +56,36 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 	private JButton button1;
 	private JButton button2;
 	private JTextArea textobj;
+	private JTextArea linenumberobj;
 
 	private JButton github_link;
 	private JButton blaregroup_link;
 	private JButton license_link;
+	private JButton update_link;
+
+	private JButton okButton;
+	private JButton cancelButton;
+
+	private JList<String> font_style_list;
+	private JList<String> font_size_list;
+	private JList<String> font_type_list;
+	private JLabel live_demo;
 
 
+	
+	public SmallPopWindows(JFrame parent, JTextArea texto, JTextArea lineobj, int dialog_type_code){
+		super(parent);
+		textobj = texto; // JTextArea object
+		linenumberobj = lineobj;  //line number obj
+		dialogtype = dialog_type_code;
+		brush = texto.getHighlighter();
+		GenerateDialog();
+	}
+	
 	public SmallPopWindows(JFrame parent, JTextArea texto, int dialog_type_code){
 		super(parent);
 		textobj = texto; // JTextArea object
+		//linenumberobj = lineobj;  //line number obj
 		dialogtype = dialog_type_code;
 		brush = texto.getHighlighter();
 		GenerateDialog();
@@ -84,6 +106,7 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 				0 = Find Dialog [Default]
 				1 = Replace dialog
 				2 = About Dialog
+				3 = font word wrap
 		*/
 
 		addWindowListener(new WindowAdapter()
@@ -354,6 +377,33 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 				    }
 
 		}
+		else if(e.getSource()==update_link)
+		{
+			//license_link
+			if (Desktop.isDesktopSupported()) 
+					{
+				      try {
+				        	Desktop.getDesktop().browse(new URI("https://github.com/blaregroup/CodeRail/blob/master/LICENSE"));
+				      }
+				  	  catch (Exception m) {}
+				    }
+
+		}
+		else if(e.getSource()==okButton)
+		{	try{
+					
+					textobj.setFont(new Font(live_demo.getFont().getFamily(),live_demo.getFont().getStyle(),live_demo.getFont().getSize()));
+					linenumberobj.setFont(new Font(live_demo.getFont().getFamily(),live_demo.getFont().getStyle(),live_demo.getFont().getSize()));
+					setVisible(false);
+			}
+			catch(Exception h){}
+			
+		}
+		else if(e.getSource()==cancelButton)
+		{
+			setVisible(false);
+
+		}
 		else{
 			// Find Window Findall Button Clicked
 			if(dialogtype==0){
@@ -366,6 +416,34 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		}
 
 	}
+	public void valueChanged(ListSelectionEvent e)
+	{
+		if(e.getSource()==font_style_list)
+		{
+			String selectedStyle=font_style_list.getSelectedValue();
+			System.out.println(""+selectedStyle);
+
+			live_demo.setFont(new Font(selectedStyle,live_demo.getFont().getStyle(),live_demo.getFont().getSize()));
+		}
+		else if(e.getSource()==font_size_list)
+		{
+			String selectedSize = font_size_list.getSelectedValue();
+			int intsize = Integer.parseInt(selectedSize);	
+			System.out.println(""+selectedSize);
+			live_demo.setFont(new Font(live_demo.getFont().getFamily(),live_demo.getFont().getStyle(),intsize));
+		}
+		else if(e.getSource()==font_type_list)
+		{
+			String selectedType = font_type_list.getSelectedValue();
+			int inttype=0;
+			if(selectedType=="PLAIN"){inttype=0;}
+			if(selectedType=="BOLD"){inttype=1;}
+			if(selectedType=="ITALIC"){inttype=2;}
+			if(selectedType=="BOLD+ITALIC"){inttype=3;}
+			System.out.println(" "+inttype);
+			live_demo.setFont(new Font(live_demo.getFont().getFamily(),inttype,live_demo.getFont().getSize()));
+		}
+	}
 
 	// Initialise GUI
 	private void InitGUI(){	
@@ -377,7 +455,11 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		setLocationRelativeTo(null);
 		if(dialogtype==2)
 		{
-			setSize(700,480);
+			setSize(700,510);
+		}
+		if(dialogtype==3)
+		{
+			setSize(470,440);
 		}
 
 	}
@@ -473,15 +555,17 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		//adding useful component
 		JLabel head=new JLabel("<html><b>CodeRail</b> Text Editor</html>");
 		JTextArea about=new JTextArea();
+		JLabel check_update = new JLabel("Check For update");
 		JLabel copyright= new JLabel("© 2019 BLARE GROUP(www.blaregroup.com)");
 		Icon img = new ImageIcon(getClass().getResource("logo.png")); 
 		JLabel logo = new JLabel(img);
 		
+
 		//adding button
 		github_link= new JButton("Github");
 		blaregroup_link = new JButton("visit Website");
 		license_link = new JButton("License");
-		
+		update_link = new JButton("Check Update");
 		
 		
 		
@@ -490,7 +574,9 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		head.setFont(new Font("",Font.PLAIN,30));
 		head.setForeground(Color.WHITE);
 
-
+		//check_update label
+		check_update.setFont(new Font("",Font.PLAIN,20));
+		check_update.setForeground(Color.WHITE);
 
 		//about label editing
 		about.setEditable(false);
@@ -500,7 +586,7 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		about.setBackground(new Color(31, 35, 64));
 		about.setForeground(Color.WHITE);
 		about.setFont (new Font("",Font.ITALIC,17));
-		about.setText("CodeRail is a Open Source Text Editor. It is a Platform Independent Text Editor.");
+		about.setText("CodeRail is a Open Source Text Editor. It is a Platform Independent Text Editor. \n\n Installed Version - v1.0");
 		about.append("\n\nCodeRail is created by BlareGroup, a Developers Group who create softwares and programs.");
 		about.append("\n\nCredit :-\n\nSuraj Singh Bisht (surajsinghbisht054@gmail.com)");
 		about.append("\n\nHimanshu Sharma (himanshusharma2972@gmail.com)");				
@@ -514,6 +600,9 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 
 		//license
 		license_link.addActionListener(this);
+
+		//update
+		update_link.addActionListener(this);
 		
 		//copyright
 		copyright.setFont(new Font("",Font.ITALIC,12));
@@ -531,10 +620,12 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		blaregroup_link.setBounds(470,10,130,20);
 		copyright.setBounds(200,40,500,50);
 		logo.setBounds(20,85,220,200);
+		check_update.setBounds(40,305,230,50);
+		update_link.setBounds(60,357,135,20);
 		
 		//config main panel
 		mainpanel.setBackground(new Color(31, 35, 64));
-		mainpanel.setBounds(0,0,700,400);
+		mainpanel.setBounds(0,0,700,430);
 		mainpanel.setLayout(null);
 
 		//config left panel
@@ -550,7 +641,7 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 			
 		//config  bottom panel			
 		bottompanel.setBackground(new Color(21, 25, 54));
-		bottompanel.setBounds(0,400,700,80);
+		bottompanel.setBounds(0,430,700,80);
 		bottompanel.setLayout(null);
 
 		//adding panels to window
@@ -563,6 +654,8 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 
 		//adding  component on left panel
 		leftpanel.add(logo);
+		leftpanel.add(check_update);
+		leftpanel.add(update_link);
 
 		//adding component on right panel
 		rightpanel.add(head);
@@ -582,6 +675,117 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 	{
 		setTitle("Choose Font");
 		setLayout(null);
+		
+		//panels
+		JPanel fontListPanel=new JPanel();
+		JPanel fontSizePanel = new JPanel();	
+		JPanel fontTypePanel = new JPanel();
+
+
+		//demo text
+		live_demo = new JLabel("This is sample test");
+		live_demo.setFont(new Font("",Font.ITALIC | Font.BOLD,16));
+		
+		
+		JLabel font_selection_heading = new JLabel("Choose Font Family");
+		JLabel font_size_selection_heading = new JLabel("Choose Font Size");
+		JLabel font_type_selection_heading = new JLabel("Choose Font Style");
+
+		//font style list
+		String font_style[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames(); // Get System font family list
+		font_style_list = new JList<String>(font_style);
+		JScrollPane scrollPane_fontStyle = new JScrollPane(font_style_list);
+		font_style_list.setVisibleRowCount(11);
+
+		//font size list
+		String font_size[] = {"10","12","14","16","18","20","22","24","26","28","32","34","36","38","40"};
+		font_size_list = new JList<String>(font_size);
+		JScrollPane scrollPane_fontSize = new JScrollPane(font_size_list);		
+	 	font_size_list.setFixedCellWidth(100);
+	 	font_size_list.setVisibleRowCount(4);
+
+	 	//adding button
+	 	okButton = new JButton("Ok");
+	 	cancelButton = new JButton("Cancel");
+ 	
+
+
+	 	//font type list
+	 	String font_type[] = {"PLAIN","BOLD","ITALIC","BOLD+ITALIC"};
+	 	font_type_list = new JList<String>(font_type);
+	 	font_type_list.setFixedCellWidth(100);
+	 	
+
+		//adding listener
+		font_style_list.addListSelectionListener(this);
+		font_size_list.addListSelectionListener(this);
+		font_type_list.addListSelectionListener(this);
+		
+		//adding button listener
+		okButton.addActionListener(this);
+		cancelButton.addActionListener(this);
+
+
+
+
+		//styling
+		live_demo.setBackground(Color.WHITE);
+    	/*fontListPanel.setBackground(Color.GRAY);
+    	fontSizePanel.setBackground(Color.GRAY);
+    	fontTypePanel.setBackground(Color.GRAY);
+    	*/font_selection_heading.setBackground(Color.WHITE);
+    	/*font_selection_heading.setForeground(Color.WHITE);
+    	font_type_selection_heading.setForeground(Color.WHITE);
+    	font_size_selection_heading.setForeground(Color.WHITE);
+		*/
+
+
+
+
+
+    	//positioning
+		live_demo.setBounds(130,300,350,60);
+		
+		font_selection_heading.setBounds(5,5,200,50);
+		font_size_selection_heading.setBounds(5,5,200,50);
+		font_type_selection_heading.setBounds(5,5,200,50);
+		
+		
+		
+
+		fontListPanel.setBounds(30,40,250,250);
+		fontSizePanel.setBounds(300,40,180,105);
+		fontTypePanel.setBounds(300,160,180,100);
+
+		okButton.setBounds(135,380,100,30);
+		cancelButton.setBounds(240,380,100,30);
+		/*font_size_list.setBounds(5,125,250,80);
+		font_style_list.setBounds(5,125,230,80);
+		font_type_list.setBounds(5,125,150,80);
+		*/
+
+		//scrollPane_fontSize.setBounds(5,120,230,120);
+		
+
+		fontListPanel.add(font_selection_heading);
+		fontListPanel.add(scrollPane_fontStyle);
+		
+		
+		fontSizePanel.add(font_size_selection_heading);
+		fontSizePanel.add(scrollPane_fontSize);
+			
+		fontTypePanel.add(font_type_selection_heading);
+		fontTypePanel.add(font_type_list);
+
+
+
+		add(live_demo);
+		add(fontListPanel);
+		add(fontSizePanel);
+		add(fontTypePanel);
+		add(okButton);
+		add(cancelButton);
+
 	}
 
 		public static void main(String args[]){
@@ -590,6 +794,8 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 		
 		JButton button1 = new JButton("Replace");
 		JButton button3 = new JButton("Find..");
+		JButton button2 = new JButton("About");
+		JButton button4 = new JButton("Font Wrap.");
 
 
 		button1.addActionListener(new ActionListener(){
@@ -602,8 +808,21 @@ public class SmallPopWindows extends JDialog implements ActionListener{
 			SmallPopWindows d = new SmallPopWindows(root,textarea, 0);
 			}
 		});
+		button4.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+			SmallPopWindows d = new SmallPopWindows(root,textarea, 3);
+			}
+		});
+		button2.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+			SmallPopWindows d = new SmallPopWindows(root,textarea, 2);
+			}
+		});
 		root.add(button1, BorderLayout.EAST);
 		root.add(button3, BorderLayout.WEST);
+		root.add(button2, BorderLayout.NORTH);
+		root.add(button4, BorderLayout.SOUTH);
+
 		root.add(textarea,BorderLayout.CENTER);
 		root.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		root.setFocusable(true);
